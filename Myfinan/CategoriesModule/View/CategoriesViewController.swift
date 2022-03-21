@@ -16,12 +16,34 @@ class CategoriesViewController: UIViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavigationBar()
+        
         self.setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setNavigationBar()
     }
     
     func setNavigationBar() {
         self.title = "Myfinan"
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .purple
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.clipsToBounds = true
+        navigationController?.navigationBar.layer.cornerRadius = 25
+        navigationController?.navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(addCategory))
         navigationItem.rightBarButtonItem = addItem
     }
@@ -32,7 +54,6 @@ class CategoriesViewController: UIViewController {
 
     
     func setupTableView() {
-
         categoriesTable = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.view.addSubview(categoriesTable)
         categoriesTable.dataSource = self

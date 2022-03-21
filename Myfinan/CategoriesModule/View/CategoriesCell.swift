@@ -14,7 +14,6 @@ class CategoriesCell: UITableViewCell {
     
     lazy var categoriesLabel: UILabel = {
         let label = UILabel()
-        label.text = "Category #1"
         return label
     }()
     
