@@ -17,8 +17,8 @@
 		493232BD27E88E0D00AAF4D9 /* MyfinanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232BC27E88E0D00AAF4D9 /* MyfinanUITestsLaunchTests.swift */; };
 		493232CE27E88EAF00AAF4D9 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232CD27E88EAF00AAF4D9 /* CategoriesModel.swift */; };
 		493232D027E88EBC00AAF4D9 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */; };
-		493232D227E88EC800AAF4D9 /* CategoriesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493232D127E88EC800AAF4D9 /* CategoriesView.xib */; };
-		493232D927E88FEE00AAF4D9 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232D827E88FEE00AAF4D9 /* CategoriesViewController.swift */; };
+		493232E227E8952C00AAF4D9 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232E027E8952C00AAF4D9 /* CategoriesViewController.swift */; };
+		493232E327E8952C00AAF4D9 /* CategoriesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493232E127E8952C00AAF4D9 /* CategoriesView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +53,8 @@
 		493232BC27E88E0D00AAF4D9 /* MyfinanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyfinanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		493232CD27E88EAF00AAF4D9 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
-		493232D127E88EC800AAF4D9 /* CategoriesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesView.xib; sourceTree = "<group>"; };
-		493232D827E88FEE00AAF4D9 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		493232E027E8952C00AAF4D9 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		493232E127E8952C00AAF4D9 /* CategoriesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,8 +153,8 @@
 		493232D527E88FB700AAF4D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				493232D827E88FEE00AAF4D9 /* CategoriesViewController.swift */,
-				493232D127E88EC800AAF4D9 /* CategoriesView.xib */,
+				493232E027E8952C00AAF4D9 /* CategoriesViewController.swift */,
+				493232E127E8952C00AAF4D9 /* CategoriesView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -280,9 +280,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				493232D227E88EC800AAF4D9 /* CategoriesView.xib in Resources */,
 				493232A627E88E0D00AAF4D9 /* LaunchScreen.storyboard in Resources */,
 				493232A327E88E0D00AAF4D9 /* Assets.xcassets in Resources */,
+				493232E327E8952C00AAF4D9 /* CategoriesView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +309,7 @@
 			files = (
 				4932329727E88E0B00AAF4D9 /* AppDelegate.swift in Sources */,
 				493232A127E88E0B00AAF4D9 /* Myfinan.xcdatamodeld in Sources */,
-				493232D927E88FEE00AAF4D9 /* CategoriesViewController.swift in Sources */,
+				493232E227E8952C00AAF4D9 /* CategoriesViewController.swift in Sources */,
 				493232CE27E88EAF00AAF4D9 /* CategoriesModel.swift in Sources */,
 				4932329927E88E0B00AAF4D9 /* SceneDelegate.swift in Sources */,
 				493232D027E88EBC00AAF4D9 /* CategoriesPresenter.swift in Sources */,
