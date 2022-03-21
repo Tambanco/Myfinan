@@ -11,21 +11,23 @@ import Foundation
 
 // MARK: Output protocol
 protocol CategoriesViewProtocol: AnyObject {
-    func setupTableView()
+    func setCategories(categories: [String])
 }
 
 // MARK: Input protocol
 protocol CategoriesPresenterProtocol: AnyObject {
     init(view: CategoriesViewProtocol, model:  CategoriesModel)
-
+    func showCategories()
 }
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
-
+    
     weak var view: CategoriesViewProtocol?
     var model: CategoriesModel
     
-    // Enter buisness logic here
+    func showCategories() {
+        self.view?.setCategories(categories: model.category)
+    }
     
     required init(view: CategoriesViewProtocol, model: CategoriesModel) {
         self.view = view

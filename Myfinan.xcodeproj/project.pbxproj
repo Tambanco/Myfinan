@@ -18,6 +18,7 @@
 		493232CE27E88EAF00AAF4D9 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232CD27E88EAF00AAF4D9 /* CategoriesModel.swift */; };
 		493232D027E88EBC00AAF4D9 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */; };
 		493232E527E8965C00AAF4D9 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232E427E8965C00AAF4D9 /* CategoriesCell.swift */; };
+		493A9ADD27E9104600B665A9 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */; };
 		49E5670027E8FFCF000CEDEF /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E566FF27E8FFCF000CEDEF /* CategoriesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		493232CD27E88EAF00AAF4D9 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		493232E427E8965C00AAF4D9 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
+		493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		49E566FF27E8FFCF000CEDEF /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				493232D427E88F3700AAF4D9 /* App */,
+				493A9ADE27E9105000B665A9 /* ServiceLayer */,
 				493232D327E88ED500AAF4D9 /* CategoriesModule */,
 				493232A227E88E0D00AAF4D9 /* Assets.xcassets */,
 				493232A427E88E0D00AAF4D9 /* LaunchScreen.storyboard */,
@@ -174,6 +177,14 @@
 				493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		493A9ADE27E9105000B665A9 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */,
+			);
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +320,7 @@
 				4932329727E88E0B00AAF4D9 /* AppDelegate.swift in Sources */,
 				493232E527E8965C00AAF4D9 /* CategoriesCell.swift in Sources */,
 				493232A127E88E0B00AAF4D9 /* Myfinan.xcdatamodeld in Sources */,
+				493A9ADD27E9104600B665A9 /* ModuleBuilder.swift in Sources */,
 				49E5670027E8FFCF000CEDEF /* CategoriesTableViewController.swift in Sources */,
 				493232CE27E88EAF00AAF4D9 /* CategoriesModel.swift in Sources */,
 				4932329927E88E0B00AAF4D9 /* SceneDelegate.swift in Sources */,
