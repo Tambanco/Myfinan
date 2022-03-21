@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: Output protocol
 protocol CategoriesViewProtocol: AnyObject {
-    
+    func setTableView()
 }
 
 // MARK: Input protocol

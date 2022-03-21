@@ -27,7 +27,9 @@ class CategoriesViewController: UIViewController {
 
 // MARK: - Binding
 extension CategoriesViewController: CategoriesViewProtocol {
-    
+    func setTableView() {
+        <#code#>
+    }
 }
 
 extension UIViewController {
