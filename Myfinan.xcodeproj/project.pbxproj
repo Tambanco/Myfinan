@@ -18,6 +18,7 @@
 		493232CE27E88EAF00AAF4D9 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232CD27E88EAF00AAF4D9 /* CategoriesModel.swift */; };
 		493232D027E88EBC00AAF4D9 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */; };
 		493232D227E88EC800AAF4D9 /* CategoriesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493232D127E88EC800AAF4D9 /* CategoriesView.xib */; };
+		493232D927E88FEE00AAF4D9 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232D827E88FEE00AAF4D9 /* CategoriesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		493232CD27E88EAF00AAF4D9 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		493232D127E88EC800AAF4D9 /* CategoriesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesView.xib; sourceTree = "<group>"; };
+		493232D827E88FEE00AAF4D9 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,10 +134,9 @@
 		493232D327E88ED500AAF4D9 /* CategoriesModule */ = {
 			isa = PBXGroup;
 			children = (
-				4932329F27E88E0B00AAF4D9 /* Myfinan.xcdatamodeld */,
-				493232CD27E88EAF00AAF4D9 /* CategoriesModel.swift */,
-				493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */,
-				493232D127E88EC800AAF4D9 /* CategoriesView.xib */,
+				493232D627E88FBC00AAF4D9 /* Model */,
+				493232D527E88FB700AAF4D9 /* View */,
+				493232D727E88FC200AAF4D9 /* Presenter */,
 			);
 			path = CategoriesModule;
 			sourceTree = "<group>";
@@ -147,6 +148,32 @@
 				4932329827E88E0B00AAF4D9 /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		493232D527E88FB700AAF4D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				493232D827E88FEE00AAF4D9 /* CategoriesViewController.swift */,
+				493232D127E88EC800AAF4D9 /* CategoriesView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		493232D627E88FBC00AAF4D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4932329F27E88E0B00AAF4D9 /* Myfinan.xcdatamodeld */,
+				493232CD27E88EAF00AAF4D9 /* CategoriesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		493232D727E88FC200AAF4D9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +309,7 @@
 			files = (
 				4932329727E88E0B00AAF4D9 /* AppDelegate.swift in Sources */,
 				493232A127E88E0B00AAF4D9 /* Myfinan.xcdatamodeld in Sources */,
+				493232D927E88FEE00AAF4D9 /* CategoriesViewController.swift in Sources */,
 				493232CE27E88EAF00AAF4D9 /* CategoriesModel.swift in Sources */,
 				4932329927E88E0B00AAF4D9 /* SceneDelegate.swift in Sources */,
 				493232D027E88EBC00AAF4D9 /* CategoriesPresenter.swift in Sources */,
