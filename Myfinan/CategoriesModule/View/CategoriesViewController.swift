@@ -12,12 +12,10 @@ import UIKit
 class CategoriesViewController: UIViewController {
 
 	var presenter: CategoriesPresenterProtocol!
-    var categoriesTable: UITableView!
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.setupTableView()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,34 +23,11 @@ class CategoriesViewController: UIViewController {
         configureNavigationBar(largeTitleColor: .black, backgoundColor: .clear, tintColor: .black, title: "Категории", preferredLargeTitle: true)
     }
     
-    func setupTableView() {
-        categoriesTable = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.view.addSubview(categoriesTable)
-        categoriesTable.dataSource = self
-        categoriesTable.delegate = self
-        categoriesTable.rowHeight = 120
-
-        categoriesTable.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
-        
-    }
 }
 
 // MARK: - Binding
 extension CategoriesViewController: CategoriesViewProtocol {
     
-}
-
-// MARK: - TableView methods
-extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
-        cell.backgroundColor = .blue
-        return cell
-    }
 }
 
 extension UIViewController {
