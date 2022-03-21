@@ -58,10 +58,6 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
         cell.backgroundColor = .blue
-        cell.kidAgeField.text = "dbffb"
-        cell.kidNameField.text = "11111"
         return cell
     }
-    
-    
 }
