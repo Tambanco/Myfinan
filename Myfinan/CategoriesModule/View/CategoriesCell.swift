@@ -10,7 +10,7 @@ import UIKit
 class CategoriesCell: UITableViewCell {
     
     //reuse id
-    static let reuseId = "KidsCell"
+    static let reuseId = "CategoriesCell"
     
     lazy var categoriesLabel: UILabel = {
         let label = UILabel()
