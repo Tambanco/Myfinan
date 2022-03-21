@@ -13,13 +13,13 @@ class CategoriesViewController: UIViewController {
 
 	var presenter: CategoriesPresenterProtocol!
     var categoriesTableView: UITableView!
-    var navBar: UINavigationBar!
-    var navItem: UINavigationItem!
+//    var navBar: UINavigationBar!
+//    var navItem: UINavigationItem!
     
 	override func viewDidLoad() {
         super.viewDidLoad()
 //        self.setNavigationBar()
-        self.setupTableView()
+//        self.setupTableView()
     }
     
 //    func setNavigationBar() {
@@ -44,6 +44,7 @@ class CategoriesViewController: UIViewController {
         categoriesTableView.dataSource = self
         categoriesTableView.delegate = self
         categoriesTableView.backgroundColor = .cyan
+        categoriesTableView.rowHeight = 120
     
         //constreints
 //        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
