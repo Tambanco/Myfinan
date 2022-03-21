@@ -13,8 +13,6 @@ class CategoriesViewController: UIViewController {
 
 	var presenter: CategoriesPresenterProtocol!
     var categoriesTable: UITableView!
-//    var navBar: UINavigationBar!
-//    var navItem: UINavigationItem!
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,20 +26,9 @@ class CategoriesViewController: UIViewController {
         navigationItem.rightBarButtonItem = addItem
     }
     
-        @objc func addCategory() {
-            
-        }
-//    func setNavigationBar() {
-//        let screenSize: CGRect = UIScreen.main.bounds
-//        navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 100))
-//        navItem = UINavigationItem(title: "Myfinan")
-//        navBar.backgroundColor = .brown
-//        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(done))
-//        navItem.rightBarButtonItem = doneItem
-//        navBar.setItems([navItem], animated: false)
-//        self.view.addSubview(navBar)
-//        }
-//
+    @objc func addCategory() {
+        
+    }
 
     
     func setupTableView() {
@@ -50,15 +37,8 @@ class CategoriesViewController: UIViewController {
         self.view.addSubview(categoriesTable)
         categoriesTable.dataSource = self
         categoriesTable.delegate = self
-//        categoriesTableView.backgroundColor = .cyan
         categoriesTable.rowHeight = 120
-    
-        //constreints
-//        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
-//        categoriesTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-//        categoriesTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//        categoriesTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-//
+
         categoriesTable.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
         
     }
