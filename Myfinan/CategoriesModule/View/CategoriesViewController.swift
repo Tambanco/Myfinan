@@ -12,16 +12,25 @@ import UIKit
 class CategoriesViewController: UIViewController {
 
 	var presenter: CategoriesPresenterProtocol!
-    var categoriesTableView: UITableView!
+    var categoriesTable: UITableView!
 //    var navBar: UINavigationBar!
 //    var navItem: UINavigationItem!
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-//        self.setNavigationBar()
-//        self.setupTableView()
+        self.setNavigationBar()
+        self.setupTableView()
     }
     
+    func setNavigationBar() {
+        self.title = "Myfinan"
+        let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(addCategory))
+        navigationItem.rightBarButtonItem = addItem
+    }
+    
+        @objc func addCategory() {
+            
+        }
 //    func setNavigationBar() {
 //        let screenSize: CGRect = UIScreen.main.bounds
 //        navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 100))
@@ -33,18 +42,16 @@ class CategoriesViewController: UIViewController {
 //        self.view.addSubview(navBar)
 //        }
 //
-//        @objc func done() {
-//
-//        }
+
     
     func setupTableView() {
 
-        categoriesTableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.view.addSubview(categoriesTableView)
-        categoriesTableView.dataSource = self
-        categoriesTableView.delegate = self
-        categoriesTableView.backgroundColor = .cyan
-        categoriesTableView.rowHeight = 120
+        categoriesTable = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(categoriesTable)
+        categoriesTable.dataSource = self
+        categoriesTable.delegate = self
+//        categoriesTableView.backgroundColor = .cyan
+        categoriesTable.rowHeight = 120
     
         //constreints
 //        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +59,7 @@ class CategoriesViewController: UIViewController {
 //        categoriesTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
 //        categoriesTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
 //
-        categoriesTableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
+        categoriesTable.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
         
     }
 }
