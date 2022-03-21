@@ -18,24 +18,24 @@ class CategoriesViewController: UIViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavigationBar()
+//        self.setNavigationBar()
         self.setupTableView()
     }
     
-    func setNavigationBar() {
-        let screenSize: CGRect = UIScreen.main.bounds
-        navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 44))
-        navItem = UINavigationItem(title: "Myfinan")
-        navBar.backgroundColor = .brown
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(done))
-        navItem.rightBarButtonItem = doneItem
-        navBar.setItems([navItem], animated: false)
-        self.view.addSubview(navBar)
-        }
-
-        @objc func done() {
-
-        }
+//    func setNavigationBar() {
+//        let screenSize: CGRect = UIScreen.main.bounds
+//        navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 100))
+//        navItem = UINavigationItem(title: "Myfinan")
+//        navBar.backgroundColor = .brown
+//        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(done))
+//        navItem.rightBarButtonItem = doneItem
+//        navBar.setItems([navItem], animated: false)
+//        self.view.addSubview(navBar)
+//        }
+//
+//        @objc func done() {
+//
+//        }
     
     func setupTableView() {
 
@@ -46,10 +46,10 @@ class CategoriesViewController: UIViewController {
         categoriesTableView.backgroundColor = .cyan
     
         //constreints
-        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
-        categoriesTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        categoriesTableView.topAnchor.constraint(equalTo: navBar.bottomAnchor).isActive = true
-        categoriesTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+//        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
+//        categoriesTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+//        categoriesTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+//        categoriesTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
 //
         categoriesTableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
         
