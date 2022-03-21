@@ -12,15 +12,50 @@ import UIKit
 class CategoriesViewController: UIViewController {
 
 	var presenter: CategoriesPresenterProtocol!
-    @IBOutlet weak var categoriesTableView: UITableView!
+    var categoriesTableView: UITableView!
     
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupTableView()
+        self.setNavigationBar()
+    }
+    
+    func setupTableView() {
+
+        categoriesTableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(categoriesTableView)
+        categoriesTableView.dataSource = self
+        categoriesTableView.delegate = self
+    
+//        //constreints
+//        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
+//        categoriesTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+//        categoriesTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+//        categoriesTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+//
+        categoriesTableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
         
     }
 }
 
 // MARK: - Binding
 extension CategoriesViewController: CategoriesViewProtocol {
+    
+}
+
+// MARK: - TableView methods
+extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
+        cell.backgroundColor = .blue
+        cell.kidAgeField.text = "dbffb"
+        cell.kidNameField.text = "11111"
+        return cell
+    }
+    
     
 }
