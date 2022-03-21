@@ -22,36 +22,8 @@ class CategoriesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationBar()
+        configureNavigationBar(largeTitleColor: .black, backgoundColor: .clear, tintColor: .black, title: "Категории", preferredLargeTitle: true)
     }
-    
-    func setNavigationBar() {
-        self.title = "Myfinan"
-        navigationController?.navigationBar.prefersLargeTitles = true
-
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .purple
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.clipsToBounds = true
-        navigationController?.navigationBar.layer.cornerRadius = 25
-        navigationController?.navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(addCategory))
-        navigationItem.rightBarButtonItem = addItem
-    }
-    
-    @objc func addCategory() {
-        
-    }
-
     
     func setupTableView() {
         categoriesTable = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -80,5 +52,63 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
         cell.backgroundColor = .blue
         return cell
+    }
+}
+
+extension UIViewController {
+func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
+    if #available(iOS 13.0, *) {
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: largeTitleColor]
+        navBarAppearance.titleTextAttributes = [.foregroundColor: largeTitleColor]
+        navBarAppearance.backgroundColor = backgoundColor
+
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.compactAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+
+        navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = tintColor
+        navigationItem.title = title
+        let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(addCategory))
+        navigationItem.rightBarButtonItem = addItem
+
+    } else {
+        // Fallback on earlier versions
+        navigationController?.navigationBar.barTintColor = backgoundColor
+        navigationController?.navigationBar.tintColor = tintColor
+        navigationController?.navigationBar.isTranslucent = false
+        navigationItem.title = title
+        }
+    }
+    @objc func addCategory() {
+        var nameField = UITextField()
+        let alert = UIAlertController(title: "Добавьте данные", message: "", preferredStyle: .alert)
+        //placeholders
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Введите категорию"
+            nameField = alertTextField
+        }
+        //action
+        let action = UIAlertAction(title: "Добавить", style: .default) { action in
+//            let newPerson = Person(context: self.context)
+//            let newKid = Kids(context: self.context)
+//
+//            newPerson.name = self.mainView.nameField.text ?? "empty"
+//            newPerson.age = Int64(self.mainView.ageField.text!) ?? 0
+//            newKid.kidName = nameField.text ?? "Empty"
+//            newKid.kidAge = Int64(ageField.text!) ?? 0
+//
+//            self.kids.append(newKid)
+//            self.person.append(newPerson)
+//            self.saveContext()
+//            print(self.kids)
+            
+        }
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
 }
