@@ -11,12 +11,14 @@ class CategoriesTableViewController: UITableViewController {
     
     var presenter: CategoriesPresenterProtocol!
     var categoriesArray: [String]!
-    var navBar: UINavigationBar!
+    var navBarAppearance = UINavigationBarAppearance()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.showCategories()
+        self.presenter.showNavigationBar()
         self.setupTableView()
+        
     }
     
     func setupTableView() {
@@ -42,6 +44,14 @@ class CategoriesTableViewController: UITableViewController {
 
 // MARK: - Binding
 extension CategoriesTableViewController: CategoriesViewProtocol {
+    func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
+        self.navBarAppearance.largeTitleTextAttributes = [.foregroundColor: largeTitleColor]
+        self.navBarAppearance.titleTextAttributes = [.foregroundColor: largeTitleColor]
+        self.navBarAppearance.backgroundColor = backgoundColor
+        self.navigationController?.navigationBar.tintColor = tintColor
+        self.navigationItem.title = title
+        self.navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
+    }
     
     func setCategories(categories: [String]) {
         categoriesArray = categories

@@ -8,25 +8,33 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: Output protocol
 protocol CategoriesViewProtocol: AnyObject {
     func setCategories(categories: [String])
+    func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool)
 }
 
 // MARK: Input protocol
 protocol CategoriesPresenterProtocol: AnyObject {
     init(view: CategoriesViewProtocol, model:  CategoriesModel)
     func showCategories()
+    func showNavigationBar()
 }
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
+    
     
     weak var view: CategoriesViewProtocol?
     var model: CategoriesModel
     
     func showCategories() {
         self.view?.setCategories(categories: model.category)
+    }
+    
+    func showNavigationBar() {
+        self.view?.configureNavigationBar(largeTitleColor: .black, backgoundColor: .cyan, tintColor: .black, title: "Категории", preferredLargeTitle: true)
     }
     
     required init(view: CategoriesViewProtocol, model: CategoriesModel) {

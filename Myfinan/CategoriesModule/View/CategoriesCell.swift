@@ -25,7 +25,7 @@ class CategoriesCell: UITableViewCell {
         
         addSubview(categoriesLabel)
         categoriesLabel.translatesAutoresizingMaskIntoConstraints = false
-        categoriesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        categoriesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         categoriesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         categoriesLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
         categoriesLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
