@@ -24,7 +24,6 @@ class CategoriesTableViewController: UITableViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         tableView.dataSource = self
         tableView.delegate = self
-
         tableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
     }
 

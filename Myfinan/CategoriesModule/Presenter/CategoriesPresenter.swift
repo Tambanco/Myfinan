@@ -33,7 +33,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func showNavigationBar() {
-        self.view?.configureNavigationBar(largeTitleColor: .black, backgoundColor: .cyan, tintColor: .black, title: "Категории", preferredLargeTitle: true)
+        self.view?.configureNavigationBar(largeTitleColor: .black, backgoundColor: .blue, tintColor: .black, title: "Категории", preferredLargeTitle: true)
     }
     
     required init(view: CategoriesViewProtocol, model: CategoriesModel) {
