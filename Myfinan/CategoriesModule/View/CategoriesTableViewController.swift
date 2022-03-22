@@ -18,7 +18,6 @@ class CategoriesTableViewController: UITableViewController {
         self.presenter.showCategories()
         self.presenter.showNavigationBar()
         self.setupTableView()
-        
     }
     
     func setupTableView() {
@@ -27,7 +26,6 @@ class CategoriesTableViewController: UITableViewController {
         tableView.delegate = self
 
         tableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
-        
     }
 
     // MARK: - Table view data source

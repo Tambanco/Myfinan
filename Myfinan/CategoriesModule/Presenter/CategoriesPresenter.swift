@@ -25,7 +25,6 @@ protocol CategoriesPresenterProtocol: AnyObject {
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     
-    
     weak var view: CategoriesViewProtocol?
     var model: CategoriesModel
     
