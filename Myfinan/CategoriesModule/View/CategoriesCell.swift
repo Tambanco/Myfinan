@@ -12,11 +12,6 @@ class CategoriesCell: UITableViewCell {
     //reuse id
     static let reuseId = "CategoriesCell"
     
-    lazy var cellView: UIView = {
-        let view = UIView()
-        return view
-    }()
-    
     lazy var categoriesLabel: UILabel = {
         let label = UILabel()
         return label
@@ -30,8 +25,6 @@ class CategoriesCell: UITableViewCell {
         self.backgroundColor = .systemCyan
         self.selectionStyle = .default
         contentView.isUserInteractionEnabled = true
-        
-        
         
         addSubview(categoriesLabel)
         categoriesLabel.translatesAutoresizingMaskIntoConstraints = false
