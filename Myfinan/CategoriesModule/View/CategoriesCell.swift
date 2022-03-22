@@ -12,6 +12,11 @@ class CategoriesCell: UITableViewCell {
     //reuse id
     static let reuseId = "CategoriesCell"
     
+    lazy var cellView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var categoriesLabel: UILabel = {
         let label = UILabel()
         return label
@@ -20,8 +25,13 @@ class CategoriesCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: CategoriesCell.reuseId)
         
-        self.selectionStyle = .none
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+        self.backgroundColor = .systemCyan
+        self.selectionStyle = .default
         contentView.isUserInteractionEnabled = true
+        
+        
         
         addSubview(categoriesLabel)
         categoriesLabel.translatesAutoresizingMaskIntoConstraints = false
