@@ -9,10 +9,12 @@ import UIKit
 
 class CategoriesTableViewController: UITableViewController {
     
+    // MARK: - Properties
     var presenter: CategoriesPresenterProtocol!
     var categoriesArray: [String]!
     var navBarAppearance = UINavigationBarAppearance()
 
+    // MARK: - App life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.showCategories()
@@ -24,14 +26,14 @@ class CategoriesTableViewController: UITableViewController {
         self.presenter.showAddButton()
     }
     
+    // MARK: - TableView
     func setupTableView() {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
     }
-
-    // MARK: - Table view data source
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoriesArray.count
     }
