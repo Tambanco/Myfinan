@@ -32,11 +32,13 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     var model: CategoriesModel
     
     func showAddButton() {
-        let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(addCategory))
+        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(addCategory))
         self.view?.configureAddButton(addButton: addItem)
     }
-
+    
+   
     @objc func addCategory() {
+        print("addItem")
 //        var textField = UITextField()
 //        let alert = UIAlertController(title: "Введите название категории", message: "", preferredStyle: .alert)
 //        alert.addTextField { alertTextField in

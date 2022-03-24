@@ -45,6 +45,7 @@ class CategoriesTableViewController: UITableViewController {
 
 // MARK: - Binding
 extension CategoriesTableViewController: CategoriesViewProtocol {
+    
     func configureAddButton(addButton: UIBarButtonItem) {
         self.navigationItem.rightBarButtonItem = addButton
     }
