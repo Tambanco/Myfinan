@@ -16,8 +16,12 @@ class CategoriesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.showCategories()
-        self.presenter.showNavigationBar()
         self.setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.presenter.showNavigationBar()
+        self.presenter.showAddButton()
     }
     
     func setupTableView() {
@@ -41,6 +45,10 @@ class CategoriesTableViewController: UITableViewController {
 
 // MARK: - Binding
 extension CategoriesTableViewController: CategoriesViewProtocol {
+    func configureAddButton(addButton: UIBarButtonItem) {
+        self.navigationItem.rightBarButtonItem = addButton
+    }
+    
     func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
         self.navBarAppearance.largeTitleTextAttributes = [.foregroundColor: largeTitleColor]
         self.navBarAppearance.titleTextAttributes = [.foregroundColor: largeTitleColor]

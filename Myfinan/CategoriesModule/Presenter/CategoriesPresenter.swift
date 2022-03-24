@@ -14,6 +14,7 @@ import UIKit
 protocol CategoriesViewProtocol: AnyObject {
     func setCategories(categories: [String])
     func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool)
+    func configureAddButton(addButton: UIBarButtonItem)
 }
 
 // MARK: Input protocol
@@ -21,12 +22,36 @@ protocol CategoriesPresenterProtocol: AnyObject {
     init(view: CategoriesViewProtocol, model:  CategoriesModel)
     func showCategories()
     func showNavigationBar()
+    func showAddButton()
 }
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     
+    
     weak var view: CategoriesViewProtocol?
     var model: CategoriesModel
+    
+    func showAddButton() {
+        let addItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: #selector(addCategory))
+        self.view?.configureAddButton(addButton: addItem)
+    }
+
+    @objc func addCategory() {
+//        var textField = UITextField()
+//        let alert = UIAlertController(title: "Введите название категории", message: "", preferredStyle: .alert)
+//        alert.addTextField { alertTextField in
+//            alertTextField.placeholder = "Введите категорию"
+//            textField = alertTextField
+//        }
+//
+//        //action
+//        let action = UIAlertAction(title: "Добавить", style: .default) { action in
+//            //add action here
+//        }
+//        alert.addAction((UIAlertAction(title: "Отмена", style: .cancel, handler: nil)))
+//        alert.addAction(action)
+//
+    }
     
     func showCategories() {
         self.view?.setCategories(categories: model.category)

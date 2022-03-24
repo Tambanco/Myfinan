@@ -20,9 +20,6 @@ class CategoriesCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: CategoriesCell.reuseId)
         
-        self.layer.cornerRadius = 10
-        self.layer.masksToBounds = true
-        self.backgroundColor = .systemCyan
         self.selectionStyle = .default
         contentView.isUserInteractionEnabled = true
         
