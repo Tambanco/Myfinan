@@ -32,7 +32,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     var model: CategoriesModel
     
     func showAddButton() {
-        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(addCategory))
+        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategory))
         self.view?.configureAddButton(addButton: addItem)
     }
     
