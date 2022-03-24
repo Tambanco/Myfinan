@@ -42,7 +42,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         var categoryTextField = UITextField()
         let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
-                    alertTextField.placeholder = "Введите категорию"
+            alertTextField.placeholder = "Введите категорию"
             categoryTextField = alertTextField
         }
         let action = UIAlertAction(title: "Добавить", style: .default) { action in
