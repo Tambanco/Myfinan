@@ -19,6 +19,7 @@
 		493232D027E88EBC00AAF4D9 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */; };
 		493232E527E8965C00AAF4D9 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232E427E8965C00AAF4D9 /* CategoriesCell.swift */; };
 		493A9ADD27E9104600B665A9 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */; };
+		49529C3027ED0A9D00EEE1D8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49529C2F27ED0A9D00EEE1D8 /* CoreDataManager.swift */; };
 		49E5670027E8FFCF000CEDEF /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E566FF27E8FFCF000CEDEF /* CategoriesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		493232CF27E88EBC00AAF4D9 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		493232E427E8965C00AAF4D9 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		49529C2F27ED0A9D00EEE1D8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		49E566FF27E8FFCF000CEDEF /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */,
+				49529C2F27ED0A9D00EEE1D8 /* CoreDataManager.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				493A9ADD27E9104600B665A9 /* ModuleBuilder.swift in Sources */,
 				49E5670027E8FFCF000CEDEF /* CategoriesTableViewController.swift in Sources */,
 				493232CE27E88EAF00AAF4D9 /* CategoriesModel.swift in Sources */,
+				49529C3027ED0A9D00EEE1D8 /* CoreDataManager.swift in Sources */,
 				4932329927E88E0B00AAF4D9 /* SceneDelegate.swift in Sources */,
 				493232D027E88EBC00AAF4D9 /* CategoriesPresenter.swift in Sources */,
 			);
