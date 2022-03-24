@@ -37,7 +37,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         self.view?.configureAddButton(addButton: addItem)
     }
     
-   
     @objc func addCategory() {
         
         var categoryTextField = UITextField()
@@ -47,7 +46,9 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
             categoryTextField = alertTextField
         }
         let action = UIAlertAction(title: "Добавить", style: .default) { action in
-                    
+            
+            self.model.category.append(categoryTextField.text ?? "999")
+            self.view?.setCategories(categories: self.model.category)
         }
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alert.addAction(action)

@@ -64,5 +64,6 @@ extension CategoriesTableViewController: CategoriesViewProtocol {
     
     func setCategories(categories: [String]) {
         categoriesArray = categories
+        tableView.reloadData()
     }
 }
