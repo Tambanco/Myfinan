@@ -15,6 +15,7 @@ protocol CategoriesViewProtocol: AnyObject {
     func setCategories(categories: [String])
     func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool)
     func configureAddButton(addButton: UIBarButtonItem)
+    func present(viewControllerToPresent: UIViewController)
 }
 
 // MARK: Input protocol
@@ -38,21 +39,19 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     
    
     @objc func addCategory() {
-        print("addItem")
-//        var textField = UITextField()
-//        let alert = UIAlertController(title: "Введите название категории", message: "", preferredStyle: .alert)
-//        alert.addTextField { alertTextField in
-//            alertTextField.placeholder = "Введите категорию"
-//            textField = alertTextField
-//        }
-//
-//        //action
-//        let action = UIAlertAction(title: "Добавить", style: .default) { action in
-//            //add action here
-//        }
-//        alert.addAction((UIAlertAction(title: "Отмена", style: .cancel, handler: nil)))
-//        alert.addAction(action)
-//
+        
+        var categoryTextField = UITextField()
+        let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
+        alert.addTextField { alertTextField in
+                    alertTextField.placeholder = "Введите категорию"
+            categoryTextField = alertTextField
+        }
+        let action = UIAlertAction(title: "Добавить", style: .default) { action in
+                    
+        }
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        alert.addAction(action)
+        self.view?.present(viewControllerToPresent: alert)
     }
     
     func showCategories() {

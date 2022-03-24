@@ -45,6 +45,9 @@ class CategoriesTableViewController: UITableViewController {
 
 // MARK: - Binding
 extension CategoriesTableViewController: CategoriesViewProtocol {
+    func present(viewControllerToPresent: UIViewController) {
+        self.present(viewControllerToPresent, animated: true)
+    }
     
     func configureAddButton(addButton: UIBarButtonItem) {
         self.navigationItem.rightBarButtonItem = addButton
