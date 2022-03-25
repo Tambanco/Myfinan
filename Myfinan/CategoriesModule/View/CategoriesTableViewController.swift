@@ -44,10 +44,25 @@ class CategoriesTableViewController: UITableViewController {
         cell.categoriesLabel.text = categoriesArray[indexPath.row].category
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+//            self.categoriesArray.remove(at: indexPath.row)
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.presenter.updateModel(indexPath: indexPath)
+            self.tableView.endUpdates()
+        }
+    }
 }
 
 // MARK: - Binding
 extension CategoriesTableViewController: CategoriesViewProtocol {
+    
     func present(viewControllerToPresent: UIViewController) {
         self.present(viewControllerToPresent, animated: true)
     }

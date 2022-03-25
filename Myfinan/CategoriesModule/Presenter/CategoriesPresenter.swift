@@ -25,6 +25,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
     func showCategories()
     func showNavigationBar()
     func showAddButton()
+    func updateModel(indexPath: IndexPath)
 }
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
@@ -56,6 +57,17 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alert.addAction(action)
         self.view?.present(viewControllerToPresent: alert)
+    }
+    
+    func updateModel(indexPath: IndexPath) {
+        self.context.delete(categories[indexPath.row])
+        do {
+            try self.context.save()
+        } catch {
+            print("Error saving context \(error.localizedDescription)")
+        }
+        categories.remove(at: indexPath.row)
+        self.view?.setCategories(categories: categories)
     }
     
     func showCategories() {
