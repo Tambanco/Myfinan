@@ -22,7 +22,6 @@ class CategoriesCell: UITableViewCell {
         
         self.selectionStyle = .default
         contentView.isUserInteractionEnabled = true
-//        backgroundColor = .systemCyan
         accessoryType = .disclosureIndicator
         
         addSubview(categoriesLabel)
