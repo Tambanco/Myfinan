@@ -41,6 +41,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     
     @objc func addCategory() {
         var categoryTextField = UITextField()
+        categoryTextField.autocapitalizationType = .sentences
         let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
             alertTextField.placeholder = "Введите категорию"
@@ -83,7 +84,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func showNavigationBar() {
-        self.view?.configureNavigationBar(largeTitleColor: .black, backgoundColor: .systemCyan, tintColor: .black, title: "Категории", preferredLargeTitle: true)
+        self.view?.configureNavigationBar(largeTitleColor: .black, backgoundColor: .gray, tintColor: .black, title: "Категории", preferredLargeTitle: true)
     }
     
     required init(view: CategoriesViewProtocol, model: Categories) {

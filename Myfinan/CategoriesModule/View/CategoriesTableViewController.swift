@@ -14,7 +14,6 @@ class CategoriesTableViewController: UITableViewController {
     var categoriesArray: [Categories]!
     var navBarAppearance = UINavigationBarAppearance()
 
-
     // MARK: - App life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,10 +70,17 @@ extension CategoriesTableViewController: CategoriesViewProtocol {
     }
     
     func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
+        self.navBarAppearance.configureWithOpaqueBackground()
         self.navBarAppearance.largeTitleTextAttributes = [.foregroundColor: largeTitleColor]
         self.navBarAppearance.titleTextAttributes = [.foregroundColor: largeTitleColor]
         self.navBarAppearance.backgroundColor = backgoundColor
+        
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.compactAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
         self.navigationController?.navigationBar.tintColor = tintColor
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.title = title
         self.navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
     }

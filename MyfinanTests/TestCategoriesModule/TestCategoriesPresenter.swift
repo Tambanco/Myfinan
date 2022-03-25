@@ -38,12 +38,21 @@ class TestCategoriesPresenter: XCTestCase {
     var presenter: CategoriesPresenter!
 
     override func setUpWithError() throws {
+        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
         view = MockView()
-//        categories = Categories(context: <#T##NSManagedObjectContext#>)
+        categories = Categories(context: context)
+        presenter = CategoriesPresenter(view: view, model: categories)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        view = nil
+        categories = nil
+        presenter = nil
     }
     
+    func testModuleIsNotNil() {
+        XCTAssertNotNil(view, "view is not nil")
+        XCTAssertNotNil(categories, "person is not nil")
+        XCTAssertNotNil(presenter, "presenter is not nil")
+    }
 }
