@@ -21,7 +21,7 @@ protocol CategoriesViewProtocol: AnyObject {
 
 // MARK: Input protocol
 protocol CategoriesPresenterProtocol: AnyObject {
-    init(view: CategoriesViewProtocol, model:  CategoriesModel)
+    init(view: CategoriesViewProtocol, model:  Categories)
     func showCategories()
     func showNavigationBar()
     func showAddButton()
@@ -29,9 +29,10 @@ protocol CategoriesPresenterProtocol: AnyObject {
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     
-    
     weak var view: CategoriesViewProtocol?
-    var model: CategoriesModel
+    var model: Categories
+    let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+    var categories = [Categories]()
     
     func showAddButton() {
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategory))
@@ -39,7 +40,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     @objc func addCategory() {
-        
         var categoryTextField = UITextField()
         let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
@@ -47,13 +47,11 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
             categoryTextField = alertTextField
         }
         let action = UIAlertAction(title: "Добавить", style: .default) { action in
-            var categories = [Categories]()
-            let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-            let newCategory = Categories(context: context)
+            let newCategory = Categories(context: self.context)
             newCategory.category = categoryTextField.text ?? "999"
-            categories.append(newCategory)
+            self.categories.append(newCategory)
+            self.view?.setCategories(categories: self.categories)
             CoreDataManager.sharedManager.saveContext()
-            self.view?.setCategories(categories: categories)
         }
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alert.addAction(action)
@@ -61,7 +59,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func showCategories() {
-        var categories = [Categories]()
         let context = CoreDataManager.sharedManager.persistentContainer.viewContext
         let request: NSFetchRequest<Categories> = Categories.fetchRequest()
             do {
@@ -76,7 +73,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         self.view?.configureNavigationBar(largeTitleColor: .black, backgoundColor: .systemCyan, tintColor: .black, title: "Категории", preferredLargeTitle: true)
     }
     
-    required init(view: CategoriesViewProtocol, model: CategoriesModel) {
+    required init(view: CategoriesViewProtocol, model: Categories) {
         self.view = view
         self.model = model
     }
