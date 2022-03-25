@@ -9,10 +9,11 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 // MARK: Output protocol
 protocol CategoriesViewProtocol: AnyObject {
-    func setCategories(categories: [String])
+    func setCategories(categories: [Categories])
     func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool)
     func configureAddButton(addButton: UIBarButtonItem)
     func present(viewControllerToPresent: UIViewController)
@@ -46,9 +47,13 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
             categoryTextField = alertTextField
         }
         let action = UIAlertAction(title: "Добавить", style: .default) { action in
-            
-            self.model.category.append(categoryTextField.text ?? "999")
-            self.view?.setCategories(categories: self.model.category)
+            var categories = [Categories]()
+            let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+            let newCategory = Categories(context: context)
+            newCategory.category = categoryTextField.text ?? "999"
+            categories.append(newCategory)
+            CoreDataManager.sharedManager.saveContext()
+            self.view?.setCategories(categories: categories)
         }
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alert.addAction(action)
@@ -56,7 +61,15 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func showCategories() {
-        self.view?.setCategories(categories: model.category)
+        var categories = [Categories]()
+        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+        let request: NSFetchRequest<Categories> = Categories.fetchRequest()
+            do {
+                categories = try context.fetch(request)
+            } catch {
+                print("Error fetching request \(error.localizedDescription)")
+            }
+        self.view?.setCategories(categories: categories)
     }
     
     func showNavigationBar() {

@@ -11,8 +11,9 @@ class CategoriesTableViewController: UITableViewController {
     
     // MARK: - Properties
     var presenter: CategoriesPresenterProtocol!
-    var categoriesArray: [String]!
+    var categoriesArray: [Categories]!
     var navBarAppearance = UINavigationBarAppearance()
+
 
     // MARK: - App life cycle
     override func viewDidLoad() {
@@ -40,7 +41,7 @@ class CategoriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
-        cell.categoriesLabel.text = categoriesArray[indexPath.row]
+        cell.categoriesLabel.text = categoriesArray[indexPath.row].category
         return cell
     }
 }
@@ -64,7 +65,7 @@ extension CategoriesTableViewController: CategoriesViewProtocol {
         self.navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
     }
     
-    func setCategories(categories: [String]) {
+    func setCategories(categories: [Categories]) {
         categoriesArray = categories
         tableView.reloadData()
     }
