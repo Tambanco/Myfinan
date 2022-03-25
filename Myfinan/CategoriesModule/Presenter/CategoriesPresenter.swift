@@ -31,8 +31,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
 class CategoriesPresenter: CategoriesPresenterProtocol {
     
     weak var view: CategoriesViewProtocol?
-    var model: Categories
-    let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+    var model: Categories!
     var categories = [Categories]()
     
     func showAddButton() {
@@ -48,7 +47,8 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
             categoryTextField = alertTextField
         }
         let action = UIAlertAction(title: "Добавить", style: .default) { action in
-            let newCategory = Categories(context: self.context)
+            let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+            let newCategory = Categories(context: context)
             newCategory.category = categoryTextField.text ?? "999"
             self.categories.append(newCategory)
             self.view?.setCategories(categories: self.categories)
@@ -60,9 +60,10 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func updateModel(indexPath: IndexPath) {
-        self.context.delete(categories[indexPath.row])
+        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+        context.delete(categories[indexPath.row])
         do {
-            try self.context.save()
+            try context.save()
         } catch {
             print("Error saving context \(error.localizedDescription)")
         }

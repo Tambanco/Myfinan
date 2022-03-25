@@ -26,7 +26,6 @@ class CoreDataManager {
     })
     return container
   }()
-  
 
   func saveContext () {
     let context = CoreDataManager.sharedManager.persistentContainer.viewContext

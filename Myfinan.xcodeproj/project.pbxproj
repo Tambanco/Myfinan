@@ -20,6 +20,7 @@
 		493A9ADD27E9104600B665A9 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */; };
 		49529C3027ED0A9D00EEE1D8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49529C2F27ED0A9D00EEE1D8 /* CoreDataManager.swift */; };
 		49E5670027E8FFCF000CEDEF /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E566FF27E8FFCF000CEDEF /* CategoriesTableViewController.swift */; };
+		49F6AEFE27EDE18700E487C1 /* TestCategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AEFD27EDE18700E487C1 /* TestCategoriesPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		49529C2F27ED0A9D00EEE1D8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		49E566FF27E8FFCF000CEDEF /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		49F6AEFD27EDE18700E487C1 /* TestCategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCategoriesPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				493232B027E88E0D00AAF4D9 /* MyfinanTests.swift */,
+				49F6AEFF27EDE19200E487C1 /* TestCategoriesModule */,
 			);
 			path = MyfinanTests;
 			sourceTree = "<group>";
@@ -185,6 +188,14 @@
 				49529C2F27ED0A9D00EEE1D8 /* CoreDataManager.swift */,
 			);
 			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		49F6AEFF27EDE19200E487C1 /* TestCategoriesModule */ = {
+			isa = PBXGroup;
+			children = (
+				49F6AEFD27EDE18700E487C1 /* TestCategoriesPresenter.swift */,
+			);
+			path = TestCategoriesModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F6AEFE27EDE18700E487C1 /* TestCategoriesPresenter.swift in Sources */,
 				493232B127E88E0D00AAF4D9 /* MyfinanTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

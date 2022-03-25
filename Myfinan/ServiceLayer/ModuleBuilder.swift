@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 protocol Builder: AnyObject {
    static func createCategoriesModule() -> UITableViewController
@@ -14,9 +15,9 @@ protocol Builder: AnyObject {
 
 class ModuleBuilder: Builder {
     static func createCategoriesModule() -> UITableViewController {
-//        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
         let view = CategoriesTableViewController()
-        let model = Categories()
+        let model = Categories(context: context)
         let presenter = CategoriesPresenter(view: view, model: model)
         view.presenter = presenter
         return view
