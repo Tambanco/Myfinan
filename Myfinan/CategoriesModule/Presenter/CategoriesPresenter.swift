@@ -41,10 +41,10 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     
     @objc func addCategory() {
         var categoryTextField = UITextField()
-        categoryTextField.autocapitalizationType = .sentences
         let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
             alertTextField.placeholder = "Введите категорию"
+            alertTextField.autocapitalizationType = .sentences
             categoryTextField = alertTextField
         }
         let action = UIAlertAction(title: "Добавить", style: .default) { action in
