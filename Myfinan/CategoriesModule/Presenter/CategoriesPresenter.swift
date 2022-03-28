@@ -14,7 +14,6 @@ import CoreData
 // MARK: Output protocol
 protocol CategoriesViewProtocol: AnyObject {
     func setCategories(categories: [Categories])
-    func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool)
     func configureAddButton(addButton: UIBarButtonItem)
     func present(viewControllerToPresent: UIViewController)
 }
@@ -23,7 +22,6 @@ protocol CategoriesViewProtocol: AnyObject {
 protocol CategoriesPresenterProtocol: AnyObject {
     init(view: CategoriesViewProtocol, model:  Categories)
     func showCategories()
-    func showNavigationBar()
     func showAddButton()
     func updateModel(indexPath: IndexPath)
 }
@@ -81,10 +79,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
                 print("Error fetching request \(error.localizedDescription)")
             }
         self.view?.setCategories(categories: categories)
-    }
-    
-    func showNavigationBar() {
-        self.view?.configureNavigationBar(largeTitleColor: .black, backgoundColor: .systemOrange, tintColor: .black, title: "Категории", preferredLargeTitle: true)
     }
     
     required init(view: CategoriesViewProtocol, model: Categories) {
