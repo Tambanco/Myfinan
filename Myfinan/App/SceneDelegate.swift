@@ -17,6 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         let categoriesVC = ModuleBuilder.createCategoriesModule()
         let navBar = UINavigationController(rootViewController: categoriesVC)
+        navBar.navigationBar.barStyle = .default
+//        navBar.navigationBar.barStyle = .black
+        navBar.navigationBar.backgroundColor = .systemOrange
         window?.rootViewController = navBar
         window?.rootViewController?.view.backgroundColor = .white
         window?.makeKeyAndVisible()
