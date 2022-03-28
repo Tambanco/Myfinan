@@ -21,9 +21,15 @@ class CategoriesTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
         self.presenter.showAddButton()
-        self.setupNavBar(preferredLargeTitle: true, title: "Категории", translucent: true, tintColor: .white, largeTitleColor: .white, backgoundColor: .systemPink)
+//        self.setNeedsStatusBarAppearanceUpdate()
+        self.setupNavBar(preferredLargeTitle: true, title: "Категории", translucent: true, tintColor: .black, largeTitleColor: .black, backgoundColor: .systemPink)
     }
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        .lightContent
+//    }
     
     // MARK: - TableView
     func setupTableView() {
@@ -31,8 +37,6 @@ class CategoriesTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
-//        tableView.backgroundColor = .lightGray
-        tableView.layer.masksToBounds = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,19 +64,64 @@ class CategoriesTableViewController: UITableViewController {
     
     // MARK: - NavigationBar
     func setupNavBar(preferredLargeTitle: Bool, title: String, translucent: Bool, tintColor: UIColor, largeTitleColor: UIColor, backgoundColor: UIColor) {
+        
+        
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.backgroundColor = .systemOrange
+            navBarAppearance.shadowColor = nil
+            
+            self.navigationController?.navigationBar.layer.cornerRadius = 20
+            self.navigationController?.navigationBar.layer.masksToBounds = true
 
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: largeTitleColor]
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: largeTitleColor]
-        self.navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
-        self.title = title
-        self.navigationController?.navigationBar.isTranslucent = translucent
-        self.navigationController?.navigationBar.tintColor = tintColor
+            self.navigationController?.navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+            self.title = "fff"
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.navigationController?.navigationBar.backgroundColor = .systemOrange
+//        self.navigationController?.navigationBar.layer.cornerRadius = 20
+//        self.navigationController?.navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//        self.title = "Категории"
+//        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+//
+//        self.navigationController?.navigationBar.barTintColor = .systemOrange
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.backgroundColor = backgoundColor
         
-        
+//        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+//        self.navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
+//        self.title = title
+//        self.navigationController?.navigationBar.isTranslucent = translucent
+//        self.navigationController?.navigationBar.tintColor = tintColor
+//
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.backgroundColor = backgoundColor
+//
+//        let shadowView = UIView(frame: CGRect(x: 0, y: -50, width: (self.navigationController?.navigationBar.bounds.width)!,
+//                                                            height: (self.navigationController?.navigationBar.bounds.height)! + 50))
+//        shadowView.backgroundColor = .white
+//
+//        self.navigationController?.navigationBar.insertSubview(shadowView, at: 1)
+//
+//        let shadowLayer = CAShapeLayer()
+//        shadowLayer.path = UIBezierPath(roundedRect: shadowView.bounds,
+//                                        byRoundingCorners: [.bottomLeft, .bottomRight],
+//                                        cornerRadii: CGSize(width: 20, height: 20)).cgPath
+//        shadowLayer.fillColor = UIColor.white.cgColor
+//        shadowLayer.shadowColor = UIColor.darkGray.cgColor
+//        shadowLayer.shadowPath = shadowLayer.path
+//        shadowLayer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+//        shadowLayer.shadowOpacity = 0.8
+//        shadowLayer.shadowRadius = 2
+//        shadowView.layer.insertSublayer(shadowLayer, at: 0)
         
         
 //        var navBarAppearance = UINavigationBarAppearance()
