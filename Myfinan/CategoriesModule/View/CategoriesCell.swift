@@ -23,8 +23,6 @@ class CategoriesCell: UITableViewCell {
         self.selectionStyle = .default
         contentView.isUserInteractionEnabled = true
         accessoryType = .disclosureIndicator
-        layer.cornerRadius = 10
-        layer.masksToBounds = true
         
         addSubview(categoriesLabel)
         categoriesLabel.translatesAutoresizingMaskIntoConstraints = false

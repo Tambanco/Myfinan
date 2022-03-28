@@ -38,25 +38,27 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     @objc func addCategory() {
-        var categoryTextField = UITextField()
         let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
             alertTextField.placeholder = "Введите категорию"
             alertTextField.autocapitalizationType = .sentences
-            categoryTextField = alertTextField
         }
-        let action = UIAlertAction(title: "Добавить", style: .default) { action in
+
+        let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
             let context = CoreDataManager.sharedManager.persistentContainer.viewContext
             let newCategory = Categories(context: context)
-            newCategory.category = categoryTextField.text ?? "999"
+            newCategory.category = alert.textFields?.first?.text ?? "999"
             self.categories.append(newCategory)
             self.view?.setCategories(categories: self.categories)
             CoreDataManager.sharedManager.saveContext()
         }
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-        alert.addAction(action)
-//        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .systemBlue
-//        alert.view.tintColor = .white
+
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+
+        alert.addAction(cancelAction)
+        alert.addAction(addAction)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .systemTeal
+        alert.view.tintColor = .black
         self.view?.present(viewControllerToPresent: alert)
     }
     
