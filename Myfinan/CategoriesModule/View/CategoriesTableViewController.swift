@@ -32,7 +32,7 @@ class CategoriesTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
-        tableView.backgroundColor = .lightGray
+//        tableView.backgroundColor = .lightGray
         tableView.layer.masksToBounds = true
     }
     
@@ -81,6 +81,29 @@ extension CategoriesTableViewController: CategoriesViewProtocol {
         navigationController?.navigationBar.compactAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.white
+
+        //4. Add shadow and cirner radius to navbar
+         let shadowView = UIView(frame: CGRect(x: 0, y: -20,
+                                            width: (self.navigationController?.navigationBar.bounds.width)!,
+                                            height: (self.navigationController?.navigationBar.bounds.height)! + 20))
+         shadowView.backgroundColor = UIColor.white
+         self.navigationController?.navigationBar.insertSubview(shadowView, at: 1)
+
+         let shadowLayer = CAShapeLayer()
+         shadowLayer.path = UIBezierPath(roundedRect: shadowView.bounds, byRoundingCorners: [.bottomLeft , .bottomRight , .topLeft], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+
+         shadowLayer.fillColor = UIColor.white.cgColor
+
+         shadowLayer.shadowColor = UIColor.darkGray.cgColor
+         shadowLayer.shadowPath = shadowLayer.path
+         shadowLayer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+         shadowLayer.shadowOpacity = 0.8
+         shadowLayer.shadowRadius = 2
+
+         shadowView.layer.insertSublayer(shadowLayer, at: 0)
         self.navigationController?.navigationBar.tintColor = tintColor
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.title = title
