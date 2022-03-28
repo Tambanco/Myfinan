@@ -55,6 +55,8 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         }
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alert.addAction(action)
+//        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .systemBlue
+//        alert.view.tintColor = .white
         self.view?.present(viewControllerToPresent: alert)
     }
     
