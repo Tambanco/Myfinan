@@ -8,27 +8,33 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 // MARK: Output protocol
 protocol CostViewProtocol: AnyObject {
-    func setCost(cost: [CostModel])
+    func setCost(cost: [Cost])
+    func configureAddButton(addButton: UIBarButtonItem)
+    func present(viewControllerToPresent: UIViewController)
 }
 
 // MARK: Input protocol
 protocol CostPresenterProtocol: AnyObject {
-    init(view: CostViewProtocol, model:  CostModel)
+    init(view: CostViewProtocol, model:  Cost)
     func showCost()
 }
 
 class CostPresenter: CostPresenterProtocol {
     
+    
     weak var view: CostViewProtocol?
-    var model: CostModel
+    var model: Cost!
     
     public func showCost() {
         self.view?.setCost(cost: [model])
     }
-    required init(view: CostViewProtocol, model: CostModel) {
+
+    required init(view: CostViewProtocol, model: Cost) {
         self.view = view
         self.model = model
     }

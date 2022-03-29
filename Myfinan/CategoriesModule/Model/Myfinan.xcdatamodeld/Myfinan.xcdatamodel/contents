@@ -3,7 +3,13 @@
     <entity name="Categories" representedClassName="Categories" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Cost" representedClassName="Cost" syncable="YES" codeGenerationType="class">
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="mark" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="Categories" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Cost" positionX="-54" positionY="0" width="128" height="74"/>
     </elements>
 </model>

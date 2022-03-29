@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoriesTableViewController: UITableViewController {
+class CategoriesController: UITableViewController {
     
     // MARK: - Properties
     var presenter: CategoriesPresenterProtocol!
@@ -35,35 +35,6 @@ class CategoriesTableViewController: UITableViewController {
         tableView.separatorStyle = .none
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoriesArray.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
-        cell.categoriesLabel.text = categoriesArray[indexPath.row].category
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.tableView.beginUpdates()
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.presenter.updateModel(indexPath: indexPath)
-            self.tableView.endUpdates()
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cost = categoriesArray[indexPath.row]
-        let costVC = ModuleBuilder.createCostModule()
-        navigationController?.pushViewController(costVC, animated: true)
-    }
-    
     // MARK: - NavigationBar
     func setupNavBar(preferredLargeTitle: Bool, title: String, tintColor: UIColor, titleTextColor: UIColor, backgoundColor: UIColor, cornerRadius: CGFloat) {
         if #available(iOS 13.0, *) {
@@ -88,7 +59,7 @@ class CategoriesTableViewController: UITableViewController {
 }
 
 // MARK: - Binding
-extension CategoriesTableViewController: CategoriesViewProtocol {
+extension CategoriesController: CategoriesViewProtocol {
     
     func present(viewControllerToPresent: UIViewController) {
         self.present(viewControllerToPresent, animated: true)

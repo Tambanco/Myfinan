@@ -12,7 +12,7 @@ import UIKit
 class CostViewController: UITableViewController {
     // MARK: - Properties
 	var presenter: CostPresenterProtocol!
-    var costArray: [CostModel]!
+    var costArray: [Cost]!
 
     // MARK: - App life cycle
 	override func viewDidLoad() {
@@ -36,30 +36,6 @@ class CostViewController: UITableViewController {
         tableView.separatorStyle = .none
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CostCell.reuseId, for: indexPath) as! CostCell
-        cell.timeLabel.text = costArray[indexPath.row].time
-        cell.costLabel.text = costArray[indexPath.row].cost
-        cell.commentLabel.text = costArray[indexPath.row].comment
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.tableView.beginUpdates()
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.endUpdates()
-        }
-    }
-    
     // MARK: - Setup NavigationBar
     func setupNavBar() {
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -68,7 +44,16 @@ class CostViewController: UITableViewController {
 
 // MARK: - Binding
 extension CostViewController: CostViewProtocol {
-    func setCost(cost: [CostModel]) {
+    func setCost(cost: [Cost]) {
         costArray = cost
     }
+    
+    func configureAddButton(addButton: UIBarButtonItem) {
+        self.navigationItem.rightBarButtonItem = addButton
+    }
+    
+    func present(viewControllerToPresent: UIViewController) {
+        self.present(viewControllerToPresent, animated: true)
+    }
 }
+
