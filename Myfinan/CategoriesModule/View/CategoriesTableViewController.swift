@@ -31,6 +31,8 @@ class CategoriesTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CategoriesCell.self, forCellReuseIdentifier: CategoriesCell.reuseId)
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .none
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
