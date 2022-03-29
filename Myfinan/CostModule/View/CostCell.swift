@@ -42,15 +42,14 @@ class CostCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: CategoriesCell.reuseId)
         
-        self.selectionStyle = .gray
+        self.selectionStyle = .none
         self.contentView.isUserInteractionEnabled = true
-        self.accessoryType = .disclosureIndicator
         
         addSubview(categoriesCardView)
         categoriesCardView.translatesAutoresizingMaskIntoConstraints = false
-        categoriesCardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
-        categoriesCardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
-        categoriesCardView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        categoriesCardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        categoriesCardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        categoriesCardView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         categoriesCardView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         categoriesCardView.addSubview(timeLabel)
@@ -61,12 +60,12 @@ class CostCell: UITableViewCell {
         categoriesCardView.addSubview(costLabel)
         costLabel.translatesAutoresizingMaskIntoConstraints = false
         costLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        costLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 20).isActive = true
+        costLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 10).isActive = true
         
         categoriesCardView.addSubview(commentLabel)
         commentLabel.translatesAutoresizingMaskIntoConstraints = false
         commentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        commentLabel.topAnchor.constraint(equalTo: costLabel.bottomAnchor, constant: 20).isActive = true
+        commentLabel.topAnchor.constraint(equalTo: costLabel.bottomAnchor, constant: 10).isActive = true
 
     }
     

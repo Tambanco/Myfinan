@@ -58,6 +58,12 @@ class CategoriesTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cost = categoriesArray[indexPath.row]
+        let costVC = ModuleBuilder.createCostModule()
+        navigationController?.pushViewController(costVC, animated: true)
+    }
+    
     // MARK: - NavigationBar
     func setupNavBar(preferredLargeTitle: Bool, title: String, tintColor: UIColor, titleTextColor: UIColor, backgoundColor: UIColor, cornerRadius: CGFloat) {
         if #available(iOS 13.0, *) {

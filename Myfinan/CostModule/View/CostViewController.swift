@@ -21,19 +21,21 @@ class CostViewController: UITableViewController {
         self.setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavBar()
+    }
+    
     // MARK: - TableView
     func setupTableView() {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CostCell.self, forCellReuseIdentifier: CostCell.reuseId)
-        tableView.rowHeight = 80
+        tableView.rowHeight = 120
         tableView.separatorStyle = .none
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -56,6 +58,11 @@ class CostViewController: UITableViewController {
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.endUpdates()
         }
+    }
+    
+    // MARK: - Setup NavigationBar
+    func setupNavBar() {
+        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 

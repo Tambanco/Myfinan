@@ -28,7 +28,7 @@ class CategoriesCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: CategoriesCell.reuseId)
         
-        self.selectionStyle = .gray
+        self.selectionStyle = .blue
         self.contentView.isUserInteractionEnabled = true
         self.accessoryType = .disclosureIndicator
         
