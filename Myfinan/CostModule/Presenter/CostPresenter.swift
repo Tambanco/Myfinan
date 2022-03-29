@@ -14,8 +14,8 @@ import CoreData
 // MARK: Output protocol
 protocol CostViewProtocol: AnyObject {
     func setCost(cost: [Cost])
-    func configureAddButton(addButton: UIBarButtonItem)
-    func present(viewControllerToPresent: UIViewController)
+    func configureAddButton(addNewCost: UIBarButtonItem)
+    func presentCostVC(viewControllerToPresent: UIViewController)
 }
 
 // MARK: Input protocol
@@ -33,34 +33,42 @@ class CostPresenter: CostPresenterProtocol {
     var cost = [Cost]()
     
     func showAddButton() {
-        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCost))
-        addItem.tintColor = .white
-        self.view?.configureAddButton(addButton: addItem)
+        let addNewCost = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCost))
+        self.view?.configureAddButton(addNewCost: addNewCost)
     }
     
     @objc func addCost() {
-        let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
-            alertTextField.placeholder = "Введите категорию"
+            alertTextField.placeholder = "Введите сумму"
+            //добавить валидацию
+        }
+        
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Комментарий"
             alertTextField.autocapitalizationType = .sentences
         }
 
         let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
             let context = CoreDataManager.sharedManager.persistentContainer.viewContext
             let newCost = Cost(context: context)
-            newCost.mark = alert.textFields?.first?.text ?? "999"
+            let today = Date()
+            let hours   = (Calendar.current.component(.hour, from: today))
+            let minutes = (Calendar.current.component(.minute, from: today))
+            newCost.time = "\(hours):\(minutes)"
+            newCost.mark = "Оплата \(alert.textFields?[0].text ?? "999") рублей за ЖКХ"
+            newCost.comment = alert.textFields?[1].text ?? "99"
             self.cost.append(newCost)
             self.view?.setCost(cost: self.cost)
             CoreDataManager.sharedManager.saveContext()
         }
 
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-
         alert.addAction(cancelAction)
         alert.addAction(addAction)
         alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .systemTeal
         alert.view.tintColor = .black
-        self.view?.present(viewControllerToPresent: alert)
+        self.view?.presentCostVC(viewControllerToPresent: alert)
     }
     
     func updateModel(indexPath: IndexPath) {

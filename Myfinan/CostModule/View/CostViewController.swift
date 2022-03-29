@@ -23,6 +23,7 @@ class CostViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.presenter.showAddButton()
         setupNavBar()
     }
     
@@ -46,13 +47,14 @@ class CostViewController: UITableViewController {
 extension CostViewController: CostViewProtocol {
     func setCost(cost: [Cost]) {
         costArray = cost
+        tableView.reloadData()
     }
     
-    func configureAddButton(addButton: UIBarButtonItem) {
-        self.navigationItem.rightBarButtonItem = addButton
+    func configureAddButton(addNewCost: UIBarButtonItem) {
+        self.navigationItem.rightBarButtonItem = addNewCost
     }
     
-    func present(viewControllerToPresent: UIViewController) {
+    func presentCostVC(viewControllerToPresent: UIViewController) {
         self.present(viewControllerToPresent, animated: true)
     }
 }
