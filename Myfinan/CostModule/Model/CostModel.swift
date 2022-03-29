@@ -10,7 +10,7 @@
 import Foundation
 
 struct CostModel {
-    var time: String
-    var cost: String
+    var time: String?
+    var cost: String?
     var comment: String?
 }
