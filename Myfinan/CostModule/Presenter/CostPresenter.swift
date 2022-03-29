@@ -34,6 +34,7 @@ class CostPresenter: CostPresenterProtocol {
     
     func showAddButton() {
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCost))
+        addItem.tintColor = .white
         self.view?.configureAddButton(addButton: addItem)
     }
     
@@ -82,7 +83,7 @@ class CostPresenter: CostPresenterProtocol {
             } catch {
                 print("Error fetching request \(error.localizedDescription)")
             }
-        self.view?.setCost(cost: [model])
+        self.view?.setCost(cost: cost)
     }
 
     required init(view: CostViewProtocol, model: Cost) {
