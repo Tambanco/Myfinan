@@ -34,7 +34,7 @@ extension CategoriesController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryTitle = categoriesArray[indexPath.row].category 
-        let costVC = ModuleBuilder.createCostModule()
+        let costVC = ModuleBuilder.createCostModule(title: categoryTitle)
         navigationController?.pushViewController(costVC, animated: true)
     }
 }

@@ -11,7 +11,7 @@ import CoreData
 
 protocol Builder: AnyObject {
     static func createCategoriesModule() -> UITableViewController
-    static func createCostModule() -> UITableViewController
+    static func createCostModule(title: String?) -> UITableViewController
 }
 
 class ModuleBuilder: Builder {
@@ -24,10 +24,10 @@ class ModuleBuilder: Builder {
         return view
     }
     
-    static func createCostModule() -> UITableViewController {
+    static func createCostModule(title: String?) -> UITableViewController {
         let view = CostViewController()
         let model = Cost()
-        let presenter = CostPresenter(view: view, model: model)
+        let presenter = CostPresenter(view: view, model: model, title: title)
         view.presenter = presenter
         return view
     }

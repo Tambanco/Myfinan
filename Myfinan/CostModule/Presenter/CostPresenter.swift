@@ -21,7 +21,7 @@ protocol CostViewProtocol: AnyObject {
 
 // MARK: Input protocol
 protocol CostPresenterProtocol: AnyObject {
-    init(view: CostViewProtocol, model:  Cost)
+    init(view: CostViewProtocol, model:  Cost, title: String?)
     func showCost()
     func showTitle()
     func showAddButton()
@@ -29,14 +29,14 @@ protocol CostPresenterProtocol: AnyObject {
 }
 
 class CostPresenter: CostPresenterProtocol {
-    
-    
+     
     weak var view: CostViewProtocol?
     var model: Cost!
     var cost = [Cost]()
+    var title: String?
     
     func showTitle() {
-        self.view?.setTitle(title: "AAA")
+        self.view?.setTitle(title: title)
     }
     
     func showAddButton() {
@@ -101,8 +101,9 @@ class CostPresenter: CostPresenterProtocol {
         self.view?.setCost(cost: cost)
     }
 
-    required init(view: CostViewProtocol, model: Cost) {
+    required init(view: CostViewProtocol, model: Cost, title: String?) {
         self.view = view
         self.model = model
+        self.title = title
     }
 }
