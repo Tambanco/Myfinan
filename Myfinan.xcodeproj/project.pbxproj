@@ -23,9 +23,9 @@
 		49F6AEFE27EDE18700E487C1 /* TestCategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AEFD27EDE18700E487C1 /* TestCategoriesPresenter.swift */; };
 		49F6AF0127F255C500E487C1 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AF0027F255C500E487C1 /* UINavigationController.swift */; };
 		49F6AF0727F2FB4400E487C1 /* CostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AF0527F2FB4400E487C1 /* CostViewController.swift */; };
-		49F6AF0827F2FB4400E487C1 /* CostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F6AF0627F2FB4400E487C1 /* CostView.xib */; };
 		49F6AF0A27F2FB5300E487C1 /* CostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AF0927F2FB5300E487C1 /* CostModel.swift */; };
 		49F6AF0C27F2FB5E00E487C1 /* CostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AF0B27F2FB5E00E487C1 /* CostPresenter.swift */; };
+		49F6AF1227F2FC1700E487C1 /* CostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AF1127F2FC1700E487C1 /* CostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,9 +66,9 @@
 		49F6AEFD27EDE18700E487C1 /* TestCategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCategoriesPresenter.swift; sourceTree = "<group>"; };
 		49F6AF0027F255C500E487C1 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		49F6AF0527F2FB4400E487C1 /* CostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostViewController.swift; sourceTree = "<group>"; };
-		49F6AF0627F2FB4400E487C1 /* CostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CostView.xib; sourceTree = "<group>"; };
 		49F6AF0927F2FB5300E487C1 /* CostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostModel.swift; sourceTree = "<group>"; };
 		49F6AF0B27F2FB5E00E487C1 /* CostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostPresenter.swift; sourceTree = "<group>"; };
+		49F6AF1127F2FC1700E487C1 /* CostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				49F6AF0527F2FB4400E487C1 /* CostViewController.swift */,
-				49F6AF0627F2FB4400E487C1 /* CostView.xib */,
+				49F6AF1127F2FC1700E487C1 /* CostCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -359,7 +359,6 @@
 			files = (
 				493232A627E88E0D00AAF4D9 /* LaunchScreen.storyboard in Resources */,
 				493232A327E88E0D00AAF4D9 /* Assets.xcassets in Resources */,
-				49F6AF0827F2FB4400E487C1 /* CostView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +392,7 @@
 				49529C3027ED0A9D00EEE1D8 /* CoreDataManager.swift in Sources */,
 				49F6AF0C27F2FB5E00E487C1 /* CostPresenter.swift in Sources */,
 				49F6AF0127F255C500E487C1 /* UINavigationController.swift in Sources */,
+				49F6AF1227F2FC1700E487C1 /* CostCell.swift in Sources */,
 				4932329927E88E0B00AAF4D9 /* SceneDelegate.swift in Sources */,
 				49F6AF0A27F2FB5300E487C1 /* CostModel.swift in Sources */,
 				493232D027E88EBC00AAF4D9 /* CategoriesPresenter.swift in Sources */,

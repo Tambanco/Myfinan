@@ -9,13 +9,51 @@
 
 import UIKit
 
-class CostViewController: UIViewController {
-
+class CostViewController: UITableViewController {
+    // MARK: - Properties
 	var presenter: CostPresenterProtocol!
 
+    // MARK: - App life cycle
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setupTableView()
+    }
+    
+    // MARK: - TableView
+    func setupTableView() {
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(CostCell.self, forCellReuseIdentifier: CostCell.reuseId)
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .none
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CostCell.reuseId, for: indexPath) as! CostCell
+        cell.timeLabel.text = "10:14"
+        cell.costLabel.text = "Oplata"
+        cell.commentLabel.text = "ghjhgfd"
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.endUpdates()
+        }
     }
 }
 
