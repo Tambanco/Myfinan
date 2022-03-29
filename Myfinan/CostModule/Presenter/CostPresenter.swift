@@ -11,22 +11,23 @@ import Foundation
 
 // MARK: Output protocol
 protocol CostViewProtocol: AnyObject {
-
+    func setCost(cost: [CostModel])
 }
 
 // MARK: Input protocol
 protocol CostPresenterProtocol: AnyObject {
     init(view: CostViewProtocol, model:  CostModel)
-
+    func showCost()
 }
 
 class CostPresenter: CostPresenterProtocol {
-
+    
     weak var view: CostViewProtocol?
     var model: CostModel
     
-    // Enter buisness logic here
-    
+    public func showCost() {
+        self.view?.setCost(cost: [model])
+    }
     required init(view: CostViewProtocol, model: CostModel) {
         self.view = view
         self.model = model

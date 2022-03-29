@@ -12,10 +12,12 @@ import UIKit
 class CostViewController: UITableViewController {
     // MARK: - Properties
 	var presenter: CostPresenterProtocol!
+    var costArray: [CostModel]!
 
     // MARK: - App life cycle
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.presenter.showCost()
         self.setupTableView()
     }
     
@@ -38,9 +40,9 @@ class CostViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CostCell.reuseId, for: indexPath) as! CostCell
-        cell.timeLabel.text = "10:14"
-        cell.costLabel.text = "Oplata"
-        cell.commentLabel.text = "ghjhgfd"
+        cell.timeLabel.text = costArray[indexPath.row].time
+        cell.costLabel.text = costArray[indexPath.row].cost
+        cell.commentLabel.text = costArray[indexPath.row].comment
         return cell
     }
     
@@ -59,5 +61,7 @@ class CostViewController: UITableViewController {
 
 // MARK: - Binding
 extension CostViewController: CostViewProtocol {
-    
+    func setCost(cost: [CostModel]) {
+        costArray = cost
+    }
 }

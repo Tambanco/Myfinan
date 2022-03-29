@@ -222,8 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				49F6AF0E27F2FB9900E487C1 /* Model */,
-				49F6AF0F27F2FB9F00E487C1 /* Presenter */,
 				49F6AF1027F2FBA700E487C1 /* View */,
+				49F6AF0F27F2FB9F00E487C1 /* Presenter */,
 			);
 			path = CostModule;
 			sourceTree = "<group>";
