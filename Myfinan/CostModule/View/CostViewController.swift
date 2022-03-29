@@ -18,6 +18,7 @@ class CostViewController: UITableViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.showCost()
+        self.presenter.showTitle()
         self.setupTableView()
     }
     
@@ -45,6 +46,10 @@ class CostViewController: UITableViewController {
 
 // MARK: - Binding
 extension CostViewController: CostViewProtocol {
+    func setTitle(title: String?) {
+        self.title = title
+    }
+    
     func setCost(cost: [Cost]) {
         costArray = cost
         tableView.reloadData()

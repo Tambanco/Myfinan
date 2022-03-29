@@ -16,7 +16,6 @@ protocol Builder: AnyObject {
 
 class ModuleBuilder: Builder {
     
-    
     static func createCategoriesModule() -> UITableViewController {
         let view = CategoriesController()
         let model = Categories()

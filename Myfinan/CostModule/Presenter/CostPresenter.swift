@@ -14,6 +14,7 @@ import CoreData
 // MARK: Output protocol
 protocol CostViewProtocol: AnyObject {
     func setCost(cost: [Cost])
+    func setTitle(title: String?)
     func configureAddButton(addNewCost: UIBarButtonItem)
     func presentCostVC(viewControllerToPresent: UIViewController)
 }
@@ -22,15 +23,21 @@ protocol CostViewProtocol: AnyObject {
 protocol CostPresenterProtocol: AnyObject {
     init(view: CostViewProtocol, model:  Cost)
     func showCost()
+    func showTitle()
     func showAddButton()
     func updateModel(indexPath: IndexPath)
 }
 
 class CostPresenter: CostPresenterProtocol {
     
+    
     weak var view: CostViewProtocol?
     var model: Cost!
     var cost = [Cost]()
+    
+    func showTitle() {
+        self.view?.setTitle(title: "AAA")
+    }
     
     func showAddButton() {
         let addNewCost = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCost))
