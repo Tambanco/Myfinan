@@ -7,9 +7,10 @@
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="mark" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Categories"/>
     </entity>
     <elements>
         <element name="Categories" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="Cost" positionX="-54" positionY="0" width="128" height="74"/>
+        <element name="Cost" positionX="165.38671875" positionY="93.13671875" width="128" height="103"/>
     </elements>
 </model>
