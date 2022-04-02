@@ -62,8 +62,8 @@ class CostPresenter: CostPresenterProtocol {
             let today = Date()
             let hours   = (Calendar.current.component(.hour, from: today))
             let minutes = (Calendar.current.component(.minute, from: today))
-            newCost.time = "\(hours):\(minutes)"
-            newCost.mark = "Оплата \(alert.textFields?[0].text ?? "999") рублей за \(self.title ?? "111")"
+            newCost.timeMark = "\(hours):\(minutes)"
+            newCost.label = "Оплата \(alert.textFields?[0].text ?? "999") рублей за \(self.title ?? "111")"
             newCost.comment = alert.textFields?[1].text ?? "99"
             self.cost.append(newCost)
             self.view?.setCost(cost: self.cost)

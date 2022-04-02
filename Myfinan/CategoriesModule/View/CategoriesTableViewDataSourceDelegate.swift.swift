@@ -15,7 +15,7 @@ extension CategoriesController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
-        cell.categoriesLabel.text = categories[indexPath.row].category
+        cell.categoriesLabel.text = categories[indexPath.row].title
         return cell
     }
     
@@ -33,8 +33,8 @@ extension CategoriesController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let categoryTitle = categories[indexPath.row].category 
-        let costVC = ModuleBuilder.createCostModule(title: categoryTitle)
+        let categoryTitle = categories[indexPath.row].title
+        let costVC = ModuleBuilder.createCostModule(titleOfHeader: categoryTitle)
         navigationController?.pushViewController(costVC, animated: true)
     }
 }

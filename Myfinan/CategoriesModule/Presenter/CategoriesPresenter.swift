@@ -13,14 +13,14 @@ import CoreData
 
 // MARK: Output protocol
 protocol CategoriesViewProtocol: AnyObject {
-    func setCategories(categories: [Categories])
+    func setCategories(categories: [Category])
     func configureAddButton(addButton: UIBarButtonItem)
     func present(viewControllerToPresent: UIViewController)
 }
 
 // MARK: Input protocol
 protocol CategoriesPresenterProtocol: AnyObject {
-    init(view: CategoriesViewProtocol, model:  Categories)
+    init(view: CategoriesViewProtocol, model:  [Category])
     func showCategories()
     func showAddButton()
     func updateModel(indexPath: IndexPath)
@@ -28,9 +28,9 @@ protocol CategoriesPresenterProtocol: AnyObject {
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     
+    var model: [Category] = []
     weak var view: CategoriesViewProtocol?
-    var model: Categories!
-    var categories = [Categories]()
+    
     
     func showAddButton() {
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategory))
@@ -46,10 +46,10 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
 
         let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
             let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-            let newCategory = Categories(context: context)
-            newCategory.category = alert.textFields?.first?.text ?? "999"
-            self.categories.append(newCategory)
-            self.view?.setCategories(categories: self.categories)
+            let newCategory = Category(context: context)
+            newCategory.title = alert.textFields?.first?.text ?? "999"
+            self.model.append(newCategory)
+            self.view?.setCategories(categories: self.model)
             CoreDataManager.sharedManager.saveContext()
         }
 
@@ -64,28 +64,28 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     
     func updateModel(indexPath: IndexPath) {
         let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-        context.delete(categories[indexPath.row])
+        context.delete(model[indexPath.row])
         do {
             try context.save()
         } catch {
             print("Error saving context \(error.localizedDescription)")
         }
-        categories.remove(at: indexPath.row)
-        self.view?.setCategories(categories: categories)
+        model.remove(at: indexPath.row)
+        self.view?.setCategories(categories: model)
     }
     
     func showCategories() {
         let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-        let request: NSFetchRequest<Categories> = Categories.fetchRequest()
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
             do {
-                categories = try context.fetch(request)
+                model = try context.fetch(request)
             } catch {
                 print("Error fetching request \(error.localizedDescription)")
             }
-        self.view?.setCategories(categories: categories)
+        self.view?.setCategories(categories: model)
     }
     
-    required init(view: CategoriesViewProtocol, model: Categories) {
+    required init(view: CategoriesViewProtocol, model: [Category]) {
         self.view = view
         self.model = model
     }
