@@ -29,13 +29,11 @@ class CostCell: UITableViewCell {
     
     lazy var costLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Oplata 100 rub"
         return label
     }()
     
     lazy var commentLabel: UILabel = {
         let label = UILabel()
-//        label.text = "This is comment"
         return label
     }()
     
