@@ -2,14 +2,16 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Categories" representedClassName="Categories" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
+        <relationship name="cost" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cost" inverseName="categories" inverseEntity="Cost"/>
     </entity>
     <entity name="Cost" representedClassName="Cost" parentEntity="Categories" syncable="YES" codeGenerationType="class">
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="mark" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="String"/>
+        <relationship name="categories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Categories" inverseName="cost" inverseEntity="Categories"/>
     </entity>
     <elements>
-        <element name="Categories" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="Cost" positionX="165.38671875" positionY="93.13671875" width="128" height="74"/>
+        <element name="Categories" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="Cost" positionX="164.19140625" positionY="144.5390625" width="128" height="103"/>
     </elements>
 </model>
