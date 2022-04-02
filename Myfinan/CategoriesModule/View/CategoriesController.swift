@@ -11,7 +11,7 @@ class CategoriesController: UITableViewController {
     
     // MARK: - Properties
     var presenter: CategoriesPresenterProtocol!
-    var categoriesArray: [Categories]!
+    var categories: [Categories] = []
 
     // MARK: - App life cycle
     override func viewDidLoad() {
@@ -70,7 +70,7 @@ extension CategoriesController: CategoriesViewProtocol {
     }
     
     func setCategories(categories: [Categories]) {
-        categoriesArray = categories
+        self.categories = categories
         tableView.reloadData()
     }
 }

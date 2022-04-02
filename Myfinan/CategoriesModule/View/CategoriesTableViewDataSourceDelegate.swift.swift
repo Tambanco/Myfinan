@@ -10,12 +10,12 @@ import UIKit
 
 extension CategoriesController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoriesArray.count
+        return categories.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
-        cell.categoriesLabel.text = categoriesArray[indexPath.row].category
+        cell.categoriesLabel.text = categories[indexPath.row].category
         return cell
     }
     
@@ -33,7 +33,7 @@ extension CategoriesController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let categoryTitle = categoriesArray[indexPath.row].category 
+        let categoryTitle = categories[indexPath.row].category 
         let costVC = ModuleBuilder.createCostModule(title: categoryTitle)
         navigationController?.pushViewController(costVC, animated: true)
     }

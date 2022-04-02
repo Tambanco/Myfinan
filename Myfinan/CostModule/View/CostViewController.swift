@@ -12,7 +12,7 @@ import UIKit
 class CostViewController: UITableViewController {
     // MARK: - Properties
 	var presenter: CostPresenterProtocol!
-    var costArray: [Cost]!
+    var cost: [Cost] = []
 
     // MARK: - App life cycle
 	override func viewDidLoad() {
@@ -51,7 +51,7 @@ extension CostViewController: CostViewProtocol {
     }
     
     func setCost(cost: [Cost]) {
-        costArray = cost
+        self.cost = cost
         tableView.reloadData()
     }
     

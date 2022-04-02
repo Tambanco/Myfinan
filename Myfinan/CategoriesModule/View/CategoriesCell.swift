@@ -15,7 +15,7 @@ class CategoriesCell: UITableViewCell {
     lazy var categoriesCardView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 20
         view.layer.masksToBounds = true
         return view
     }()
