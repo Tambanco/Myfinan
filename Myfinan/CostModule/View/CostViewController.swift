@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CostViewController: UITableViewController {
     // MARK: - Properties

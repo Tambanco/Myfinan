@@ -21,7 +21,7 @@ protocol CostViewProtocol: AnyObject {
 
 // MARK: Input protocol
 protocol CostPresenterProtocol: AnyObject {
-    init(view: CostViewProtocol, model:  Cost, title: String?)
+    init(view: CostViewProtocol, model:  [Cost], title: String?, context: NSManagedObjectContext)
     func showCost()
     func showTitle()
     func showAddButton()
@@ -29,11 +29,12 @@ protocol CostPresenterProtocol: AnyObject {
 }
 
 class CostPresenter: CostPresenterProtocol {
-     
+    
+    
     weak var view: CostViewProtocol?
-    var model: Cost!
-    var cost = [Cost]()
+    var model: [Cost] = [Cost]()
     var title: String?
+    var context: NSManagedObjectContext!
     
     func showTitle() {
         self.view?.setTitle(title: title)
@@ -57,16 +58,15 @@ class CostPresenter: CostPresenterProtocol {
         }
 
         let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
-            let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-            let newCost = Cost(context: context)
+            let newCost = Cost(context: self.context)
             let today = Date()
             let hours   = (Calendar.current.component(.hour, from: today))
             let minutes = (Calendar.current.component(.minute, from: today))
             newCost.timeMark = "\(hours):\(minutes)"
             newCost.label = "Оплата \(alert.textFields?[0].text ?? "999") рублей за \(self.title ?? "111")"
             newCost.comment = alert.textFields?[1].text ?? "99"
-            self.cost.append(newCost)
-            self.view?.setCost(cost: self.cost)
+            self.model.append(newCost)
+            self.view?.setCost(cost: self.model)
             CoreDataManager.sharedManager.saveContext()
         }
 
@@ -79,31 +79,47 @@ class CostPresenter: CostPresenterProtocol {
     }
     
     func updateModel(indexPath: IndexPath) {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-        context.delete(cost[indexPath.row])
+        context.delete(model[indexPath.row])
         do {
             try context.save()
         } catch {
             print("Error saving context \(error.localizedDescription)")
         }
-        cost.remove(at: indexPath.row)
-        self.view?.setCost(cost: cost)
+        model.remove(at: indexPath.row)
+        self.view?.setCost(cost: model)
     }
     
     func showCost() {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
         let request: NSFetchRequest<Cost> = Cost.fetchRequest()
+        request.predicate = NSPredicate(format: "parentCategory.title MATCHES %@", "\(title)")
             do {
-                cost = try context.fetch(request)
+                model = try context.fetch(request)
             } catch {
                 print("Error fetching request \(error.localizedDescription)")
             }
-        self.view?.setCost(cost: cost)
+        self.view?.setCost(cost: model)
     }
+    
+//    func showCost (with request: NSFetchRequest<Cost> , predicate: NSPredicate?) {
+//        let categoryPredicate = NSPredicate(format: "parentCategory.title MATCHES %@", selectedCategory!.title!)
+//        if let additionalPredicate = predicate {
+//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+//        } else {
+//            request.predicate = categoryPredicate
+//        }
+//
+//        do {
+//            model = try context.fetch(request)
+//        } catch {
+//            print("Error fetching data from context: \(error)")
+//        }
+//        self.view?.setCost(cost: model)
+//    }
 
-    required init(view: CostViewProtocol, model: Cost, title: String?) {
+    required init(view: CostViewProtocol, model: [Cost], title: String?, context: NSManagedObjectContext) {
         self.view = view
         self.model = model
         self.title = title
+        self.context = context
     }
 }

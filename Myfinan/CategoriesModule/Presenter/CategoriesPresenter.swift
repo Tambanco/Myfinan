@@ -20,7 +20,7 @@ protocol CategoriesViewProtocol: AnyObject {
 
 // MARK: Input protocol
 protocol CategoriesPresenterProtocol: AnyObject {
-    init(view: CategoriesViewProtocol, model:  [Category])
+    init(view: CategoriesViewProtocol, model:  [Category], context: NSManagedObjectContext)
     func showCategories()
     func showAddButton()
     func updateModel(indexPath: IndexPath)
@@ -28,9 +28,9 @@ protocol CategoriesPresenterProtocol: AnyObject {
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     
-    var model: [Category] = []
+    var model: [Category] = [Category]()
     weak var view: CategoriesViewProtocol?
-    
+    var context: NSManagedObjectContext!
     
     func showAddButton() {
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategory))
@@ -45,8 +45,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         }
 
         let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
-            let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-            let newCategory = Category(context: context)
+            let newCategory = Category(context: self.context)
             newCategory.title = alert.textFields?.first?.text ?? "999"
             self.model.append(newCategory)
             self.view?.setCategories(categories: self.model)
@@ -63,7 +62,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func updateModel(indexPath: IndexPath) {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
         context.delete(model[indexPath.row])
         do {
             try context.save()
@@ -75,7 +73,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func showCategories() {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
         let request: NSFetchRequest<Category> = Category.fetchRequest()
             do {
                 model = try context.fetch(request)
@@ -85,8 +82,9 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         self.view?.setCategories(categories: model)
     }
     
-    required init(view: CategoriesViewProtocol, model: [Category]) {
+    required init(view: CategoriesViewProtocol, model: [Category], context: NSManagedObjectContext) {
         self.view = view
         self.model = model
+        self.context = context
     }
 }
