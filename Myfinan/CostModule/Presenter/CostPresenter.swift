@@ -21,7 +21,7 @@ protocol CostViewProtocol: AnyObject {
 
 // MARK: Input protocol
 protocol CostPresenterProtocol: AnyObject {
-    init(view: CostViewProtocol, model:  [Cost], title: String?, context: NSManagedObjectContext)
+    init(view: CostViewProtocol, cost:  [Cost], title: String?, context: NSManagedObjectContext)
     func showCost()
     func showTitle()
     func showAddButton()
@@ -30,9 +30,8 @@ protocol CostPresenterProtocol: AnyObject {
 
 class CostPresenter: CostPresenterProtocol {
     
-    
     weak var view: CostViewProtocol?
-    var model: [Cost] = [Cost]()
+    var cost: [Cost] = [Cost]()
     var title: String?
     var context: NSManagedObjectContext!
     
@@ -65,8 +64,8 @@ class CostPresenter: CostPresenterProtocol {
             newCost.timeMark = "\(hours):\(minutes)"
             newCost.label = "Оплата \(alert.textFields?[0].text ?? "999") рублей за \(self.title ?? "111")"
             newCost.comment = alert.textFields?[1].text ?? "99"
-            self.model.append(newCost)
-            self.view?.setCost(cost: self.model)
+            self.cost.append(newCost)
+            self.view?.setCost(cost: self.cost)
             CoreDataManager.sharedManager.saveContext()
         }
 
@@ -79,46 +78,32 @@ class CostPresenter: CostPresenterProtocol {
     }
     
     func updateModel(indexPath: IndexPath) {
-        context.delete(model[indexPath.row])
+        context.delete(cost[indexPath.row])
         do {
             try context.save()
         } catch {
             print("Error saving context \(error.localizedDescription)")
         }
-        model.remove(at: indexPath.row)
-        self.view?.setCost(cost: model)
+        cost.remove(at: indexPath.row)
+        self.view?.setCost(cost: cost)
     }
     
     func showCost() {
-        let request: NSFetchRequest<Cost> = Cost.fetchRequest()
-        request.predicate = NSPredicate(format: "parentCategory.title MATCHES %@", "\(title)")
+        let fetchRequest: NSFetchRequest<Cost> = Cost.fetchRequest()
+        let predicate = NSPredicate(format: "comment == %@", "Foo")
+        fetchRequest.predicate = predicate
+        
             do {
-                model = try context.fetch(request)
+                cost = try context.fetch(fetchRequest)
             } catch {
                 print("Error fetching request \(error.localizedDescription)")
             }
-        self.view?.setCost(cost: model)
+        self.view?.setCost(cost: cost)
     }
-    
-//    func showCost (with request: NSFetchRequest<Cost> , predicate: NSPredicate?) {
-//        let categoryPredicate = NSPredicate(format: "parentCategory.title MATCHES %@", selectedCategory!.title!)
-//        if let additionalPredicate = predicate {
-//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-//        } else {
-//            request.predicate = categoryPredicate
-//        }
-//
-//        do {
-//            model = try context.fetch(request)
-//        } catch {
-//            print("Error fetching data from context: \(error)")
-//        }
-//        self.view?.setCost(cost: model)
-//    }
 
-    required init(view: CostViewProtocol, model: [Cost], title: String?, context: NSManagedObjectContext) {
+    required init(view: CostViewProtocol, cost: [Cost], title: String?, context: NSManagedObjectContext) {
         self.view = view
-        self.model = model
+        self.cost = cost
         self.title = title
         self.context = context
     }

@@ -20,7 +20,7 @@ protocol CategoriesViewProtocol: AnyObject {
 
 // MARK: Input protocol
 protocol CategoriesPresenterProtocol: AnyObject {
-    init(view: CategoriesViewProtocol, model:  [Category], context: NSManagedObjectContext)
+    init(view: CategoriesViewProtocol, categories:  [Category], context: NSManagedObjectContext)
     func showCategories()
     func showAddButton()
     func updateModel(indexPath: IndexPath)
@@ -28,7 +28,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     
-    var model: [Category] = [Category]()
+    var categories: [Category] = [Category]()
     weak var view: CategoriesViewProtocol?
     var context: NSManagedObjectContext!
     
@@ -47,8 +47,8 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
             let newCategory = Category(context: self.context)
             newCategory.title = alert.textFields?.first?.text ?? "999"
-            self.model.append(newCategory)
-            self.view?.setCategories(categories: self.model)
+            self.categories.append(newCategory)
+            self.view?.setCategories(categories: self.categories)
             CoreDataManager.sharedManager.saveContext()
         }
 
@@ -62,29 +62,29 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func updateModel(indexPath: IndexPath) {
-        context.delete(model[indexPath.row])
+        context.delete(categories[indexPath.row])
         do {
             try context.save()
         } catch {
             print("Error saving context \(error.localizedDescription)")
         }
-        model.remove(at: indexPath.row)
-        self.view?.setCategories(categories: model)
+        categories.remove(at: indexPath.row)
+        self.view?.setCategories(categories: categories)
     }
     
     func showCategories() {
         let request: NSFetchRequest<Category> = Category.fetchRequest()
             do {
-                model = try context.fetch(request)
+                categories = try context.fetch(request)
             } catch {
                 print("Error fetching request \(error.localizedDescription)")
             }
-        self.view?.setCategories(categories: model)
+        self.view?.setCategories(categories: categories)
     }
     
-    required init(view: CategoriesViewProtocol, model: [Category], context: NSManagedObjectContext) {
+    required init(view: CategoriesViewProtocol, categories: [Category], context: NSManagedObjectContext) {
         self.view = view
-        self.model = model
+        self.categories = categories
         self.context = context
     }
 }

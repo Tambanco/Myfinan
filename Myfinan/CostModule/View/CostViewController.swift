@@ -18,8 +18,8 @@ class CostViewController: UITableViewController {
     // MARK: - App life cycle
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.presenter.showCost()
         self.presenter.showTitle()
+        self.presenter.showCost()
         self.setupTableView()
     }
     
