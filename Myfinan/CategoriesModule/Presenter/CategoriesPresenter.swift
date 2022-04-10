@@ -23,41 +23,16 @@ protocol CategoriesPresenterProtocol: AnyObject {
     init(view: CategoriesViewProtocol, categories:  [Category])
     func showCategories()
     func showAddButton()
-    func editModel(indexPath: IndexPath, newTitle: String)
+    func editModel(indexPath: IndexPath)
     func removeModelItems(indexPath: IndexPath)
 }
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
     
-    
     var categories: [Category] = [Category]()
     weak var view: CategoriesViewProtocol?
     let context = CoreDataManager.sharedManager.persistentContainer.viewContext
     
-    func editModel(indexPath: IndexPath, newTitle: String) {
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addTextField { alertTextField in
-            alertTextField.text = newTitle
-            alertTextField.autocapitalizationType = .sentences
-        }
-        
-        let addAction = UIAlertAction(title: "Сохранить", style: .default) { action in
-            let updatedCategory = Category(context: self.context)
-            let newCostTitle = Cost(context: self.context)
-            let updatedTextField = alert.textFields?.first?.text ?? "222"
-            updatedCategory.name = updatedTextField
-            newCostTitle.category = updatedTextField
-            self.categories[indexPath.row].name = updatedTextField
-            self.view?.setCategories(categories: self.categories)
-            CoreDataManager.sharedManager.saveContext()
-        }
-        
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        
-        alert.addAction(cancelAction)
-        alert.addAction(addAction)
-        self.view?.present(viewControllerToPresent: alert)
-    }
     
     func showAddButton() {
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategory))
@@ -81,6 +56,29 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
 
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
 
+        alert.addAction(cancelAction)
+        alert.addAction(addAction)
+        self.view?.present(viewControllerToPresent: alert)
+    }
+    
+    func editModel(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addTextField { alertTextField in
+            alertTextField.text = self.categories[indexPath.row].name
+            alertTextField.autocapitalizationType = .sentences
+        }
+        
+        let addAction = UIAlertAction(title: "Сохранить", style: .default) { action in
+            let updatedValue = alert.textFields?.first?.text ?? "222"
+            self.categories[indexPath.row].name = updatedValue
+            self.view?.setCategories(categories: self.categories)
+            
+            self.context.name = updatedValue
+            CoreDataManager.sharedManager.saveContext()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
         alert.addAction(cancelAction)
         alert.addAction(addAction)
         self.view?.present(viewControllerToPresent: alert)

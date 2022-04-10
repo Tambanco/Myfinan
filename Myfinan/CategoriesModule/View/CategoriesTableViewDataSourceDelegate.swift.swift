@@ -37,10 +37,9 @@ extension CategoriesController {
         deleteCategory.backgroundColor = .systemRed
         
         let editCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
-            guard let newTitle = self.categories[indexPath.row].name else { return }
+//            guard let newTitle = self.categories[indexPath.row].name else { return }
             self.tableView.beginUpdates()
-            self.presenter.editModel(indexPath: indexPath, newTitle: newTitle)
-//            self.presenter.updateModel(indexPath: indexPath)
+            self.presenter.editModel(indexPath: indexPath)
             self.tableView.endUpdates()
             completionHandler(true)
         }
