@@ -23,14 +23,39 @@ extension CategoriesController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            self.tableView.beginUpdates()
+//            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+//            self.presenter.updateModel(indexPath: indexPath)
+//            self.tableView.endUpdates()
+//        }
+//    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.presenter.updateModel(indexPath: indexPath)
             self.tableView.endUpdates()
+            completionHandler(true)
         }
+        let deleteImage = UIImage(systemName: "trash")
+        deleteCategory.image = deleteImage
+        deleteCategory.backgroundColor = .systemRed
         
+        let editCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
+            self.tableView.beginUpdates()
+            // добавить метод редактирования
+            self.tableView.endUpdates()
+            completionHandler(true)
+        }
+        let editImage = UIImage(systemName: "pencil")
+        editCategory.image = editImage
+        editCategory.backgroundColor = .systemMint
+        
+        return UISwipeActionsConfiguration(actions: [deleteCategory,editCategory])
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
