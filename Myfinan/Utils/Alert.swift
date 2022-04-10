@@ -30,7 +30,9 @@ enum Alert {
 
         alert.addAction(cancelAction)
         alert.addAction(addAction)
-        view?.present(viewControllerToPresent: alert)
+        DispatchQueue.main.async {
+            view?.present(viewControllerToPresent: alert)
+        }
     }
     
     static func editModel(title: String, massage: String, actionTitle: String, cancelTitle: String, indexPath: IndexPath, context: NSManagedObjectContext, categories: [Category], view: CategoriesViewProtocol?) {
@@ -52,7 +54,9 @@ enum Alert {
         
         alert.addAction(cancelAction)
         alert.addAction(addAction)
-        view?.present(viewControllerToPresent: alert)
+        DispatchQueue.main.async {
+            view?.present(viewControllerToPresent: alert)
+        }
     }
     
     static func addNewCost(categoryTitle: String?, firstPlaceholder: String, secondPlaceholder: String, title: String, actionTitle: String, cancelTitle: String, context: NSManagedObjectContext, cost: [Cost], view: CostViewProtocol?) {
@@ -87,6 +91,8 @@ enum Alert {
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         alert.addAction(addAction)
-        view?.presentCostVC(viewControllerToPresent: alert)
+        DispatchQueue.main.async {
+            view?.presentCostVC(viewControllerToPresent: alert)
+        }
     }
 }
