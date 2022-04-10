@@ -21,7 +21,7 @@ protocol CostViewProtocol: AnyObject {
 
 // MARK: Input protocol
 protocol CostPresenterProtocol: AnyObject {
-    init(view: CostViewProtocol, cost:  [Cost], title: String?, context: NSManagedObjectContext)
+    init(view: CostViewProtocol, cost:  [Cost], title: String?)
     func showCost()
     func showTitle()
     func showAddButton()
@@ -33,7 +33,7 @@ class CostPresenter: CostPresenterProtocol {
     weak var view: CostViewProtocol?
     var cost: [Cost] = [Cost]()
     var title: String?
-    var context: NSManagedObjectContext!
+    var context = CoreDataManager.sharedManager.persistentContainer.viewContext
     
     func showTitle() {
         self.view?.setTitle(title: title)
@@ -45,6 +45,7 @@ class CostPresenter: CostPresenterProtocol {
     }
     
     @objc func addCost() {
+        guard let currentTitleOfCost = title else { return }
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
             alertTextField.placeholder = "Введите сумму"
@@ -64,6 +65,7 @@ class CostPresenter: CostPresenterProtocol {
             newCost.timeMark = "\(hours):\(minutes)"
             newCost.label = "Оплата \(alert.textFields?[0].text ?? "999") рублей за \(self.title ?? "111")"
             newCost.comment = alert.textFields?[1].text ?? "99"
+            newCost.category = "\(currentTitleOfCost)"
             self.cost.append(newCost)
             self.view?.setCost(cost: self.cost)
             CoreDataManager.sharedManager.saveContext()
@@ -89,22 +91,21 @@ class CostPresenter: CostPresenterProtocol {
     }
     
     func showCost() {
-        let fetchRequest: NSFetchRequest<Cost> = Cost.fetchRequest()
-        let predicate = NSPredicate(format: "comment == %@", "Foo")
-        fetchRequest.predicate = predicate
-        
+        guard let currentTitle = title else { return }
+        let request: NSFetchRequest<Cost> = Cost.fetchRequest()
+        let predicate: NSPredicate = NSPredicate(format: "category == %@", "\(currentTitle)")
+        request.predicate = predicate
             do {
-                cost = try context.fetch(fetchRequest)
+                cost = try context.fetch(request)
             } catch {
                 print("Error fetching request \(error.localizedDescription)")
             }
         self.view?.setCost(cost: cost)
     }
 
-    required init(view: CostViewProtocol, cost: [Cost], title: String?, context: NSManagedObjectContext) {
+    required init(view: CostViewProtocol, cost: [Cost], title: String?) {
         self.view = view
         self.cost = cost
         self.title = title
-        self.context = context
     }
 }

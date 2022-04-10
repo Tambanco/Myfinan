@@ -20,7 +20,7 @@ protocol CategoriesViewProtocol: AnyObject {
 
 // MARK: Input protocol
 protocol CategoriesPresenterProtocol: AnyObject {
-    init(view: CategoriesViewProtocol, categories:  [Category], context: NSManagedObjectContext)
+    init(view: CategoriesViewProtocol, categories:  [Category])
     func showCategories()
     func showAddButton()
     func updateModel(indexPath: IndexPath)
@@ -30,7 +30,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     
     var categories: [Category] = [Category]()
     weak var view: CategoriesViewProtocol?
-    var context: NSManagedObjectContext!
+    let context = CoreDataManager.sharedManager.persistentContainer.viewContext
     
     func showAddButton() {
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCategory))
@@ -46,7 +46,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
 
         let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
             let newCategory = Category(context: self.context)
-            newCategory.title = alert.textFields?.first?.text ?? "999"
+            newCategory.name = alert.textFields?.first?.text ?? "999"
             self.categories.append(newCategory)
             self.view?.setCategories(categories: self.categories)
             CoreDataManager.sharedManager.saveContext()
@@ -82,9 +82,8 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         self.view?.setCategories(categories: categories)
     }
     
-    required init(view: CategoriesViewProtocol, categories: [Category], context: NSManagedObjectContext) {
+    required init(view: CategoriesViewProtocol, categories: [Category]) {
         self.view = view
         self.categories = categories
-        self.context = context
     }
 }

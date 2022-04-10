@@ -16,12 +16,12 @@ protocol Builder: AnyObject {
 
 class ModuleBuilder: Builder {
     
-    static let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+//    static let context = CoreDataManager.sharedManager.persistentContainer.viewContext
     
     static func createCategoriesModule() -> UITableViewController {
         let view = CategoriesController()
         let categories = [Category]()
-        let presenter = CategoriesPresenter(view: view, categories: categories, context: context)
+        let presenter = CategoriesPresenter(view: view, categories: categories)
         view.presenter = presenter
         return view
     }
@@ -29,7 +29,7 @@ class ModuleBuilder: Builder {
     static func createCostModule(titleOfHeader: String?) -> UITableViewController {
         let view = CostViewController()
         let cost = [Cost]()
-        let presenter = CostPresenter(view: view, cost: cost, title: titleOfHeader, context: context)
+        let presenter = CostPresenter(view: view, cost: cost, title: titleOfHeader)
         view.presenter = presenter
         return view
     }
