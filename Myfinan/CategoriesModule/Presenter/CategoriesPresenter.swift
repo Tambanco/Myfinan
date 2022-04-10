@@ -23,7 +23,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
     init(view: CategoriesViewProtocol, categories:  [Category])
     func showCategories()
     func showAddButton()
-    func editModel(indexPath: IndexPath)
+    func editModel(indexPath: IndexPath, newTitle: String)
     func updateModel(indexPath: IndexPath)
 }
 
@@ -34,19 +34,22 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     weak var view: CategoriesViewProtocol?
     let context = CoreDataManager.sharedManager.persistentContainer.viewContext
     
-    func editModel(indexPath: IndexPath) {
+    func editModel(indexPath: IndexPath, newTitle: String) {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addTextField { alertTextField in
-            alertTextField.text = "Foo"
+            alertTextField.text = newTitle
             alertTextField.autocapitalizationType = .sentences
         }
         
         let addAction = UIAlertAction(title: "Сохранить", style: .default) { action in
-            //            let newCategory = Category(context: self.context)
-            //            newCategory.name = alert.textFields?.first?.text ?? "999"
-            //            self.categories.append(newCategory)
-            //            self.view?.setCategories(categories: self.categories)
-            //            CoreDataManager.sharedManager.saveContext()
+            let updatedCategory = Category(context: self.context)
+            let newCostTitle = Cost(context: self.context)
+            let updatedTextField = alert.textFields?.first?.text ?? "222"
+            updatedCategory.name = updatedTextField
+            newCostTitle.category = updatedTextField
+            self.categories[indexPath.row].name = updatedTextField
+            self.view?.setCategories(categories: self.categories)
+            CoreDataManager.sharedManager.saveContext()
         }
         
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)

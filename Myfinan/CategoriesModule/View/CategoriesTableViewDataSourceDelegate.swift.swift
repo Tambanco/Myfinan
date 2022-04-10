@@ -24,15 +24,6 @@ extension CategoriesController {
         return true
     }
     
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            self.tableView.beginUpdates()
-//            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-//            self.presenter.updateModel(indexPath: indexPath)
-//            self.tableView.endUpdates()
-//        }
-//    }
-    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
             self.tableView.beginUpdates()
@@ -46,10 +37,10 @@ extension CategoriesController {
         deleteCategory.backgroundColor = .systemRed
         
         let editCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
-            
+            guard let newTitle = self.categories[indexPath.row].name else { return }
             self.tableView.beginUpdates()
-            // добавить метод редактирования
-            self.presenter.editModel(indexPath: indexPath)
+            self.presenter.editModel(indexPath: indexPath, newTitle: newTitle)
+//            self.presenter.updateModel(indexPath: indexPath)
             self.tableView.endUpdates()
             completionHandler(true)
         }
