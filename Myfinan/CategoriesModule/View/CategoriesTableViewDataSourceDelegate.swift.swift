@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 extension CategoriesController {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
@@ -33,7 +34,6 @@ extension CategoriesController {
 //    }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
         let deleteCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -46,6 +46,7 @@ extension CategoriesController {
         deleteCategory.backgroundColor = .systemRed
         
         let editCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
+            
             self.tableView.beginUpdates()
             // добавить метод редактирования
             self.presenter.editModel(indexPath: indexPath)
@@ -54,7 +55,7 @@ extension CategoriesController {
         }
         let editImage = UIImage(systemName: "pencil")
         editCategory.image = editImage
-        editCategory.backgroundColor = .systemMint
+        editCategory.backgroundColor = .systemTeal
         
         return UISwipeActionsConfiguration(actions: [deleteCategory,editCategory])
     }
