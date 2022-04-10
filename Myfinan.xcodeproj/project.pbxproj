@@ -19,6 +19,7 @@
 		493232E527E8965C00AAF4D9 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493232E427E8965C00AAF4D9 /* CategoriesCell.swift */; };
 		493A9ADD27E9104600B665A9 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */; };
 		49529C3027ED0A9D00EEE1D8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49529C2F27ED0A9D00EEE1D8 /* CoreDataManager.swift */; };
+		49817BD2280361F200EA7E67 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49817BD1280361F200EA7E67 /* Alert.swift */; };
 		49E5670027E8FFCF000CEDEF /* CategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E566FF27E8FFCF000CEDEF /* CategoriesController.swift */; };
 		49F6AEFE27EDE18700E487C1 /* TestCategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AEFD27EDE18700E487C1 /* TestCategoriesPresenter.swift */; };
 		49F6AF0127F255C500E487C1 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F6AF0027F255C500E487C1 /* UINavigationController.swift */; };
@@ -63,6 +64,7 @@
 		493232E427E8965C00AAF4D9 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		493A9ADC27E9104600B665A9 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		49529C2F27ED0A9D00EEE1D8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		49817BD1280361F200EA7E67 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		49E566FF27E8FFCF000CEDEF /* CategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesController.swift; sourceTree = "<group>"; };
 		49F6AEFD27EDE18700E487C1 /* TestCategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCategoriesPresenter.swift; sourceTree = "<group>"; };
 		49F6AF0027F255C500E487C1 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				49F6AF0027F255C500E487C1 /* UINavigationController.swift */,
+				49817BD1280361F200EA7E67 /* Alert.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				4932329727E88E0B00AAF4D9 /* AppDelegate.swift in Sources */,
 				493232E527E8965C00AAF4D9 /* CategoriesCell.swift in Sources */,
 				493232A127E88E0B00AAF4D9 /* Myfinan.xcdatamodeld in Sources */,
+				49817BD2280361F200EA7E67 /* Alert.swift in Sources */,
 				493A9ADD27E9104600B665A9 /* ModuleBuilder.swift in Sources */,
 				49E5670027E8FFCF000CEDEF /* CategoriesController.swift in Sources */,
 				49F6AF0727F2FB4400E487C1 /* CostViewController.swift in Sources */,

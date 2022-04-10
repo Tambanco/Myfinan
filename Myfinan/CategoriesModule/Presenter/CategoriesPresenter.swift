@@ -40,25 +40,26 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     @objc func addCategory() {
-        let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
-        alert.addTextField { alertTextField in
-            alertTextField.placeholder = "Введите категорию"
-            alertTextField.autocapitalizationType = .sentences
-        }
-
-        let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
-            let newCategory = Category(context: self.context)
-            newCategory.name = alert.textFields?.first?.text ?? "999"
-            self.categories.append(newCategory)
-            self.view?.setCategories(categories: self.categories, categoryName: newCategory.name)
-            CoreDataManager.sharedManager.saveContext()
-        }
-
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-
-        alert.addAction(cancelAction)
-        alert.addAction(addAction)
-        self.view?.present(viewControllerToPresent: alert)
+        Alert.addNewCategory(title: "Добавьте новую категорию", massage: "", actionTitle: "Добавить", cancelTitle: "Отмена", context: context, categories: categories, view: view)
+//        let alert = UIAlertController(title: "Добавьте новую категорию", message: "", preferredStyle: .alert)
+//        alert.addTextField { alertTextField in
+//            alertTextField.placeholder = "Введите категорию"
+//            alertTextField.autocapitalizationType = .sentences
+//        }
+//
+//        let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
+//            let newCategory = Category(context: self.context)
+//            newCategory.name = alert.textFields?.first?.text ?? "999"
+//            self.categories.append(newCategory)
+//            self.view?.setCategories(categories: self.categories, categoryName: newCategory.name)
+//            CoreDataManager.sharedManager.saveContext()
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+//
+//        alert.addAction(cancelAction)
+//        alert.addAction(addAction)
+//        self.view?.present(viewControllerToPresent: alert)
     }
     
     func editModel(indexPath: IndexPath) {
