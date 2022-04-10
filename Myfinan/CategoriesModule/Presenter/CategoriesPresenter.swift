@@ -63,26 +63,27 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
     }
     
     func editModel(indexPath: IndexPath) {
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addTextField { alertTextField in
-            alertTextField.text = self.categories[indexPath.row].name
-            alertTextField.autocapitalizationType = .sentences
-        }
-        
-        let addAction = UIAlertAction(title: "Сохранить", style: .default) { action in
-            let updatedValue = alert.textFields?.first?.text ?? "222"
-            self.categories[indexPath.row].name = updatedValue
-            self.view?.setCategories(categories: self.categories, categoryName: updatedValue)
-            self.context.name = updatedValue
-            CoreDataManager.sharedManager.saveContext()
-            
-        }
-        
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        
-        alert.addAction(cancelAction)
-        alert.addAction(addAction)
-        self.view?.present(viewControllerToPresent: alert)
+        Alert.editModel(title: "", massage: "", actionTitle: "Сохранить", cancelTitle: "Отмена", indexPath: indexPath, context: context, categories: categories, view: view)
+//        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+//        alert.addTextField { alertTextField in
+//            alertTextField.text = self.categories[indexPath.row].name
+//            alertTextField.autocapitalizationType = .sentences
+//        }
+//        
+//        let addAction = UIAlertAction(title: "Сохранить", style: .default) { action in
+//            let updatedValue = alert.textFields?.first?.text ?? "222"
+//            self.categories[indexPath.row].name = updatedValue
+//            self.view?.setCategories(categories: self.categories, categoryName: updatedValue)
+//            self.context.name = updatedValue
+//            CoreDataManager.sharedManager.saveContext()
+//            
+//        }
+//        
+//        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+//        
+//        alert.addAction(cancelAction)
+//        alert.addAction(addAction)
+//        self.view?.present(viewControllerToPresent: alert)
     }
     
     func removeModelItems(indexPath: IndexPath) {

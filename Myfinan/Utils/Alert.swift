@@ -33,4 +33,27 @@ enum Alert {
         alert.addAction(addAction)
         view?.present(viewControllerToPresent: alert)
     }
+    
+    static func editModel(title: String, massage: String, actionTitle: String, cancelTitle: String, indexPath: IndexPath, context: NSManagedObjectContext, categories: [Category], view: CategoriesViewProtocol?) {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addTextField { alertTextField in
+            alertTextField.text = categories[indexPath.row].name
+            alertTextField.autocapitalizationType = .sentences
+        }
+        
+        let addAction = UIAlertAction(title: "Сохранить", style: .default) { action in
+            let updatedValue = alert.textFields?.first?.text ?? "222"
+            categories[indexPath.row].name = updatedValue
+            view?.setCategories(categories: categories, categoryName: updatedValue)
+            context.name = updatedValue
+            CoreDataManager.sharedManager.saveContext()
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(addAction)
+        view?.present(viewControllerToPresent: alert)
+    }
 }
