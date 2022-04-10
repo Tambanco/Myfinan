@@ -28,7 +28,7 @@ extension CategoriesController {
         let deleteCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.presenter.updateModel(indexPath: indexPath)
+            self.presenter.removeModelItems(indexPath: indexPath)
             self.tableView.endUpdates()
             completionHandler(true)
         }

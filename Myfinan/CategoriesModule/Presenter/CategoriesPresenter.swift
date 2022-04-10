@@ -24,7 +24,7 @@ protocol CategoriesPresenterProtocol: AnyObject {
     func showCategories()
     func showAddButton()
     func editModel(indexPath: IndexPath, newTitle: String)
-    func updateModel(indexPath: IndexPath)
+    func removeModelItems(indexPath: IndexPath)
 }
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
@@ -86,7 +86,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         self.view?.present(viewControllerToPresent: alert)
     }
     
-    func updateModel(indexPath: IndexPath) {
+    func removeModelItems(indexPath: IndexPath) {
         context.delete(categories[indexPath.row])
         do {
             try context.save()
