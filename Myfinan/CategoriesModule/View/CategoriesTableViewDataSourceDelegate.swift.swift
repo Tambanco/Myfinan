@@ -37,7 +37,6 @@ extension CategoriesController {
         deleteCategory.backgroundColor = .systemRed
         
         let editCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
-//            guard let newTitle = self.categories[indexPath.row].name else { return }
             self.tableView.beginUpdates()
             self.presenter.editModel(indexPath: indexPath)
             self.tableView.endUpdates()
@@ -51,7 +50,7 @@ extension CategoriesController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let categoryTitle = categories[indexPath.row].name
+        categoryTitle = categories[indexPath.row].name
         let costVC = ModuleBuilder.createCostModule(titleOfHeader: categoryTitle)
         navigationController?.pushViewController(costVC, animated: true)
     }

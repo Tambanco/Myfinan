@@ -13,7 +13,7 @@ import CoreData
 
 // MARK: Output protocol
 protocol CategoriesViewProtocol: AnyObject {
-    func setCategories(categories: [Category])
+    func setCategories(categories: [Category], categoryName: String?)
     func configureAddButton(addButton: UIBarButtonItem)
     func present(viewControllerToPresent: UIViewController)
 }
@@ -50,7 +50,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
             let newCategory = Category(context: self.context)
             newCategory.name = alert.textFields?.first?.text ?? "999"
             self.categories.append(newCategory)
-            self.view?.setCategories(categories: self.categories)
+            self.view?.setCategories(categories: self.categories, categoryName: newCategory.name)
             CoreDataManager.sharedManager.saveContext()
         }
 
@@ -71,10 +71,10 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
         let addAction = UIAlertAction(title: "Сохранить", style: .default) { action in
             let updatedValue = alert.textFields?.first?.text ?? "222"
             self.categories[indexPath.row].name = updatedValue
-            self.view?.setCategories(categories: self.categories)
-            
+            self.view?.setCategories(categories: self.categories, categoryName: updatedValue)
             self.context.name = updatedValue
             CoreDataManager.sharedManager.saveContext()
+            
         }
         
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
@@ -92,7 +92,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
             print("Error saving context \(error.localizedDescription)")
         }
         categories.remove(at: indexPath.row)
-        self.view?.setCategories(categories: categories)
+        self.view?.setCategories(categories: categories, categoryName: "")
     }
     
     func showCategories() {
@@ -102,7 +102,7 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
             } catch {
                 print("Error fetching request \(error.localizedDescription)")
             }
-        self.view?.setCategories(categories: categories)
+        self.view?.setCategories(categories: categories, categoryName: "")
     }
     
     required init(view: CategoriesViewProtocol, categories: [Category]) {

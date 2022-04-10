@@ -12,6 +12,7 @@ class CategoriesController: UITableViewController {
     // MARK: - Properties
     var presenter: CategoriesPresenterProtocol!
     var categories: [Category] = []
+    var categoryTitle: String?
 
     // MARK: - App life cycle
     override func viewDidLoad() {
@@ -69,8 +70,9 @@ extension CategoriesController: CategoriesViewProtocol {
         self.navigationItem.rightBarButtonItem = addButton
     }
     
-    func setCategories(categories: [Category]) {
+    func setCategories(categories: [Category], categoryName: String?) {
         self.categories = categories
+        self.categoryTitle = categoryName
         tableView.reloadData()
     }
 }

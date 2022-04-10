@@ -25,7 +25,7 @@ protocol CostPresenterProtocol: AnyObject {
     func showCost()
     func showTitle()
     func showAddButton()
-    func updateModel(indexPath: IndexPath)
+    func removeModelItems(indexPath: IndexPath)
 }
 
 class CostPresenter: CostPresenterProtocol {
@@ -62,6 +62,7 @@ class CostPresenter: CostPresenterProtocol {
             let today = Date()
             let hours   = (Calendar.current.component(.hour, from: today))
             let minutes = (Calendar.current.component(.minute, from: today))
+            // тут баг где не видно 0 во значении вермени 21:6
             newCost.timeMark = "\(hours):\(minutes)"
             newCost.label = "Оплата \(alert.textFields?[0].text ?? "999") рублей за \(self.title ?? "111")"
             newCost.comment = alert.textFields?[1].text ?? "99"
@@ -77,7 +78,7 @@ class CostPresenter: CostPresenterProtocol {
         self.view?.presentCostVC(viewControllerToPresent: alert)
     }
     
-    func updateModel(indexPath: IndexPath) {
+    func removeModelItems(indexPath: IndexPath) {
         context.delete(cost[indexPath.row])
         do {
             try context.save()
