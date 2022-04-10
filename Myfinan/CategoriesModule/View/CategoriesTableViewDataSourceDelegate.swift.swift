@@ -30,6 +30,7 @@ extension CategoriesController {
             self.presenter.updateModel(indexPath: indexPath)
             self.tableView.endUpdates()
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
