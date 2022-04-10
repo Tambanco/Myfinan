@@ -23,10 +23,33 @@ protocol CategoriesPresenterProtocol: AnyObject {
     init(view: CategoriesViewProtocol, categories:  [Category])
     func showCategories()
     func showAddButton()
+    func editModel(indexPath: IndexPath)
     func updateModel(indexPath: IndexPath)
 }
 
 class CategoriesPresenter: CategoriesPresenterProtocol {
+    
+    func editModel(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Foo"
+            alertTextField.autocapitalizationType = .sentences
+        }
+
+        let addAction = UIAlertAction(title: "Сохранить", style: .default) { action in
+//            let newCategory = Category(context: self.context)
+//            newCategory.name = alert.textFields?.first?.text ?? "999"
+//            self.categories.append(newCategory)
+//            self.view?.setCategories(categories: self.categories)
+//            CoreDataManager.sharedManager.saveContext()
+        }
+
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+
+        alert.addAction(cancelAction)
+        alert.addAction(addAction)
+        self.view?.present(viewControllerToPresent: alert)
+    }
     
     var categories: [Category] = [Category]()
     weak var view: CategoriesViewProtocol?
@@ -56,8 +79,6 @@ class CategoriesPresenter: CategoriesPresenterProtocol {
 
         alert.addAction(cancelAction)
         alert.addAction(addAction)
-        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .systemTeal
-        alert.view.tintColor = .black
         self.view?.present(viewControllerToPresent: alert)
     }
     

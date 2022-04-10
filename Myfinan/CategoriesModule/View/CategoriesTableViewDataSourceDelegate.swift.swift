@@ -48,6 +48,7 @@ extension CategoriesController {
         let editCategory = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
             self.tableView.beginUpdates()
             // добавить метод редактирования
+            self.presenter.editModel(indexPath: indexPath)
             self.tableView.endUpdates()
             completionHandler(true)
         }

@@ -74,8 +74,6 @@ class CostPresenter: CostPresenterProtocol {
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         alert.addAction(addAction)
-        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .systemTeal
-        alert.view.tintColor = .black
         self.view?.presentCostVC(viewControllerToPresent: alert)
     }
     
