@@ -45,37 +45,7 @@ class CostPresenter: CostPresenterProtocol {
     }
     
     @objc func addCost() {
-        guard let currentTitleOfCost = title else { return }
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addTextField { alertTextField in
-            alertTextField.placeholder = "Введите сумму"
-            //добавить валидацию
-        }
-        
-        alert.addTextField { alertTextField in
-            alertTextField.placeholder = "Комментарий"
-            alertTextField.autocapitalizationType = .sentences
-        }
-
-        let addAction = UIAlertAction(title: "Добавить", style: .default) { action in
-            let newCost = Cost(context: self.context)
-            let today = Date()
-            let hours   = (Calendar.current.component(.hour, from: today))
-            let minutes = (Calendar.current.component(.minute, from: today))
-            // тут баг где не видно 0 во значении вермени 21:6
-            newCost.timeMark = "\(hours):\(minutes)"
-            newCost.label = "Оплата \(alert.textFields?[0].text ?? "999") рублей за \(self.title ?? "111")"
-            newCost.comment = alert.textFields?[1].text ?? "99"
-            newCost.category = "\(currentTitleOfCost)"
-            self.cost.append(newCost)
-            self.view?.setCost(cost: self.cost)
-            CoreDataManager.sharedManager.saveContext()
-        }
-
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        alert.addAction(addAction)
-        self.view?.presentCostVC(viewControllerToPresent: alert)
+        Alert.addNewCost(categoryTitle: title, firstPlaceholder: "Введите сумму", secondPlaceholder: "Комментарий", title: "", actionTitle: "Добавить", cancelTitle: "Отмена", context: context, cost: cost, view: view)
     }
     
     func removeModelItems(indexPath: IndexPath) {
